@@ -1,12 +1,15 @@
 const API_KEY = "ad166f4252f544f38678b331fc373fff";
+var happy = new Array;
+var sad = new Array;
+var isHappy = true;
+
 function getTopNews() {
     var url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=" + API_KEY;
     var jqxhr = $.get(url);
     // Set the callback for if/when the AJAX request successfully returns
     jqxhr.done(function(data){
-        // var obj = JSON.parse(data);
-        console.log(data);
-        $("body").text(data);
+        partitionNews(data);
+        displayNews(isHappy);
     });
 
     // Set the callback for if/when the AJAX request fails
@@ -19,6 +22,29 @@ function getTopNews() {
         console.log("Done with AJAX request");
     });
 }
+
+function partitionNews(allNews) {
+    allNews["articles"].forEach(function(data){
+        var s = sentiment(data);
+        if(s === 1){
+            happy.push(data);
+        }
+        else if(s === -1){
+            sad.push(data);
+        }
+    });
+}
+
+function displayNews(isHappy){
+    if(isHappy){
+        console.log(happy);
+    }
+    else{
+        console.log(sad);
+    }
+}
+
+
 $(document).ready(function() {
    getTopNews();
    console.log("called");
