@@ -5,23 +5,28 @@ function sentiment(article){
     sentimentString += article["title"] + ". ";
     sentimentString += article["description"];
     sentimentString += article["content"];
+    sentimentString = sentimentString.replace(/(\r\n|\n|\r)/gm, " ");
     console.log(sentimentString);
 
     var url = "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21&sentences=false";
-
-    /*var jqxhr = $.ajax({
+    var auth = 'Basic ' + btoa('apikey' + ':' + API_KEY_WATSON);
+    //console.log(auth);
+    var jqxhr = $.ajax({
         url: url,
         headers: {
-            'Authorization':'Basic ' + API_KEY_WATSON,
+            //'Authorization': auth,
             'Content-Type':'application/json'
         },
         method: 'POST',
         dataType: 'json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", "Basic " + btoa('apikey' + ":" + API_KEY_WATSON));
+        },
         data: {"text": sentimentString},
         success: function(data){
-            console.log('succes: ' + data);
+            console.log('success: ' + data);
         }
-    });*/
+    });
     //var jqxhr = $.post(url, {"text": sentimentString});
     // Set the callback for if/when the AJAX request successfully returns
     /*jqxhr.done(function(data){

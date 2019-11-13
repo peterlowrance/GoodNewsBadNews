@@ -24,7 +24,8 @@ function getTopNews() {
 }
 
 function partitionNews(allNews) {
-    allNews["articles"].forEach(function(data){
+    var s = sentiment(allNews["articles"].pop());
+    /*allNews["articles"].forEach(function(data){
         var s = sentiment(data);
         if(s === 1){
             happy.push(data);
@@ -32,15 +33,15 @@ function partitionNews(allNews) {
         else if(s === -1){
             sad.push(data);
         }
-    });
+    });*/
 }
 
 function displayNews(isHappy){
     if(isHappy){
-        console.log(happy);
+        //console.log(happy);
     }
     else{
-        console.log(sad);
+        //console.log(sad);
     }
 }
 
