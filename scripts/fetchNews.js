@@ -9,6 +9,7 @@ function getTopNews() {
     // Set the callback for if/when the AJAX request successfully returns
     jqxhr.done(function(data){
         partitionNews(data);
+        // Needs to wait for partition to finish
         displayNews(isHappy);
     });
 
@@ -24,24 +25,35 @@ function getTopNews() {
 }
 
 function partitionNews(allNews) {
+    // Test code that just does the first article
     var s = sentiment(allNews["articles"].pop());
+    if(s > 0){
+        happy.push(data);
+    }
+    else if(s < 0){
+        sad.push(data);
+    }
+    // Real code
     /*allNews["articles"].forEach(function(data){
         var s = sentiment(data);
-        if(s === 1){
+        if(s > 0){
             happy.push(data);
         }
-        else if(s === -1){
+        else if(s < 0){
             sad.push(data);
         }
     });*/
 }
 
 function displayNews(isHappy){
+    console.log(happy);
+    console.log("display");
     if(isHappy){
         //console.log(happy);
+        $("div").html(happy.toString());
     }
     else{
-        //console.log(sad);
+        $("div").html(sad.toString());
     }
 }
 

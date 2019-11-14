@@ -12,26 +12,26 @@ function sentiment(article){
     var auth = 'Basic ' + btoa('apikey' + ':' + API_KEY_WATSON);
     //console.log(auth);
     var jqxhr = $.ajax({
-        url: url,
+        url: url + '&text=' + sentimentString,
         headers: {
             //'Authorization': auth,
             'Content-Type':'application/json'
         },
-        method: 'POST',
+        method: 'GET',
         dataType: 'json',
         beforeSend: function (xhr) {
             xhr.setRequestHeader ("Authorization", "Basic " + btoa('apikey' + ":" + API_KEY_WATSON));
         },
-        data: {"text": sentimentString},
-        success: function(data){
-            console.log('success: ' + data);
-        }
+        //data: {text: sentimentString},
+        /*success: function(data){
+            console.log('succ');
+            console.log(data);
+        }*/
     });
-    //var jqxhr = $.post(url, {"text": sentimentString});
+
     // Set the callback for if/when the AJAX request successfully returns
-    /*jqxhr.done(function(data){
-        partitionNews(data);
-        displayNews(isHappy);
+    jqxhr.done(function(data){
+        return happyOrSad(data["document_tone"]["tones"]);
     });
 
     // Set the callback for if/when the AJAX request fails
@@ -42,7 +42,36 @@ function sentiment(article){
     // Set a callback to execute regardless of success or failure result
     jqxhr.always(function(){
         console.log("Done with AJAX request");
-    });*/
+    });
 
-    return 1;
+    return 0;
+}
+
+function happyOrSad(tones){
+    var happy = 0;
+    tones.forEach(function(tone){
+       console.log(tone);
+       if(tone["tone_id"] === "sadness"){
+           console.log('sad ' + tone["score"]);
+           happy -= 1;
+       }
+       else if(tone["tone_id"] === "anger"){
+           console.log('anger ' + tone["score"]);
+           happy -= 1;
+       }
+       else if(tone["tone_id"] === "fear"){
+           console.log('fear ' + tone["score"]);
+           happy -= 1;
+       }
+       else if(tone["tone_id"] === "joy"){
+           console.log('joy ' + tone["score"]);
+           happy += 1;
+       }
+       else if(tone["tone_id"] === "confident"){
+           console.log('confident ' + tone["score"]);
+           happy += 1;
+       }
+    });
+    console.log("total happiness: " + happy);
+    return happy;
 }
