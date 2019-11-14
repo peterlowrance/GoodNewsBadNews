@@ -50,15 +50,17 @@ function displayNews(isHappy){
     console.log("display");
     if(isHappy){
         //console.log(happy);
-        $("div").html(happy.toString());
+        $("#news").html(happy.toString());
     }
     else{
-        $("div").html(sad.toString());
+        $("#news").html(sad.toString());
     }
 }
 
 
 $(document).ready(function() {
-   getTopNews();
-   console.log("called");
+    $("#loadNews").click(function () {
+        getTopNews();
+        console.log("called");
+    });
 });
