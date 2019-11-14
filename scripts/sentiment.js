@@ -1,6 +1,7 @@
 const API_KEY_WATSON = "wWWmw1H_8L1Rzjj4Ulr18ufiJ3eUZkIlwUXzNjp4jQX4";
 // Returns 1 for happy, -1 for sad, and 0 otherwise
-function sentiment(article){
+function sentiment(article, callback){
+    console.log("checking sentiment of article");
     var sentimentString = ""
     sentimentString += article["title"] + ". ";
     sentimentString += article["description"];
@@ -31,7 +32,14 @@ function sentiment(article){
 
     // Set the callback for if/when the AJAX request successfully returns
     jqxhr.done(function(data){
-        return happyOrSad(data["document_tone"]["tones"]);
+        var s = happyOrSad(data["document_tone"]["tones"]);
+        if(s > 0){
+            happy.push(data);
+        }
+        else if(s < 0){
+            sad.push(data);
+        }
+        displayArticle(article["title"] + " : " + s); //use a countdown and a timer. Possibly array of jqxhr that has a callback
     });
 
     // Set the callback for if/when the AJAX request fails
@@ -41,7 +49,7 @@ function sentiment(article){
     });
     // Set a callback to execute regardless of success or failure result
     jqxhr.always(function(){
-        console.log("Done with AJAX request");
+        console.log("Done sentiment with AJAX request");
     });
 
     return 0;
@@ -72,6 +80,6 @@ function happyOrSad(tones){
            happy += 1;
        }
     });
-    console.log("total happiness: " + happy);
+    console.log("Calculated happiness: " + happy);
     return happy;
 }

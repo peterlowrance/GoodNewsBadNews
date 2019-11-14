@@ -4,13 +4,14 @@ var sad = new Array;
 var isHappy = true;
 
 function getTopNews() {
+    console.log("Getting top news");
     var url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=" + API_KEY;
     var jqxhr = $.get(url);
     // Set the callback for if/when the AJAX request successfully returns
     jqxhr.done(function(data){
-        partitionNews(data);
+        partitionNews(data, displayNews);
         // Needs to wait for partition to finish
-        displayNews(isHappy);
+        //displayNews();
     });
 
     // Set the callback for if/when the AJAX request fails
@@ -20,34 +21,36 @@ function getTopNews() {
     });
     // Set a callback to execute regardless of success or failure result
     jqxhr.always(function(){
-        console.log("Done with AJAX request");
+        console.log("Done with news AJAX request");
     });
 }
 
-function partitionNews(allNews) {
+function partitionNews(allNews, callback) {
     // Test code that just does the first article
-    var s = sentiment(allNews["articles"].pop());
-    if(s > 0){
+    /*console.log("partitioning news");
+    //var s =
+    sentiment(allNews["articles"].pop(), callback);
+    /!*if(s > 0){
         happy.push(data);
     }
     else if(s < 0){
         sad.push(data);
-    }
+    }*!/
+    console.log("finished partitioning news");*/
     // Real code
-    /*allNews["articles"].forEach(function(data){
-        var s = sentiment(data);
-        if(s > 0){
+    allNews["articles"].forEach(function(data){
+        var s = sentiment(data, callback);
+        /*if(s > 0){
             happy.push(data);
         }
         else if(s < 0){
             sad.push(data);
-        }
-    });*/
+        }*/
+    });
 }
 
-function displayNews(isHappy){
-    console.log(happy);
-    console.log("display");
+function displayNews(){
+    console.log("Displaying news");
     if(isHappy){
         //console.log(happy);
         $("#news").html(happy.toString());
@@ -57,6 +60,9 @@ function displayNews(isHappy){
     }
 }
 
+function displayArticle(article){
+    $("#news").append('<li>' + article + '</li>');
+}
 
 $(document).ready(function() {
     $("#loadNews").click(function () {
