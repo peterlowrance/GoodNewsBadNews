@@ -15,13 +15,26 @@
 	
 	<!--For testing NewUser.php-->
 	<!-- MUST IMPORT THE USERS.SQL INTO XAMPP FOR THIS TO WORK-->
+	<h4>Create Account</h4>
 	<form method="get" action="scripts/NewUser.php"> 
 		<input type="text" name="username" id="f-username" />
 			<label for="f-username">Username</label>
         <br />
 		<input type="text" name="password" id="f-password" />
 			<label for="f-password">Password</label>
-        <input type="submit" value="Go!" />
+        <input type="submit" value="Create Account" />
+	</form>
+	<br />
+	
+	<!--For testing Login.php-->
+	<h4>Login</h4>
+	<form method="get" action="scripts/Login.php"> 
+		<input type="text" name="username" id="f-username" />
+			<label for="f-username">Username</label>
+        <br />
+		<input type="text" name="password" id="f-password" />
+			<label for="f-password">Password</label>
+        <input type="submit" value="Login" />
 	</form>
 	
 	
