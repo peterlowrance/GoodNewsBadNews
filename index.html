@@ -11,5 +11,19 @@
 <body>
     <button id="loadNews">Test fetch news</button>
     <ul id="news"></ul>
+	<br />
+	
+	<!--For testing NewUser.php-->
+	<!-- MUST IMPORT THE USERS.SQL INTO XAMPP FOR THIS TO WORK-->
+	<form method="get" action="scripts/NewUser.php"> 
+		<input type="text" name="username" id="f-username" />
+			<label for="f-username">Username</label>
+        <br />
+		<input type="text" name="password" id="f-password" />
+			<label for="f-password">Password</label>
+        <input type="submit" value="Go!" />
+	</form>
+	
+	
 </body>
 </html>
