@@ -3,20 +3,18 @@ var happy = new Array;
 var sad = new Array;
 var isHappy = true;
 
+// Gets all the news and then partitions it
 function getTopNews() {
     console.log("Getting top news");
     var url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=" + API_KEY;
     var jqxhr = $.get(url);
     // Set the callback for if/when the AJAX request successfully returns
     jqxhr.done(function(data){
-        partitionNews(data, displayNews);
-        // Needs to wait for partition to finish
-        //displayNews();
+        partitionNews(data);
     });
 
     // Set the callback for if/when the AJAX request fails
     jqxhr.fail(function(jqXHR){
-        // jqXHR is the failed call (so we can access status, e.g.)
         console.log("Error: " + jqXHR.status);
     });
     // Set a callback to execute regardless of success or failure result
@@ -25,48 +23,45 @@ function getTopNews() {
     });
 }
 
-function partitionNews(allNews, callback) {
-    // Test code that just does the first article
-    /*console.log("partitioning news");
-    //var s =
-    sentiment(allNews["articles"].pop(), callback);
-    /!*if(s > 0){
-        happy.push(data);
-    }
-    else if(s < 0){
-        sad.push(data);
-    }*!/
-    console.log("finished partitioning news");*/
-    // Real code
+// Use the sentiment of each article to partition it into happy and sad articles
+function partitionNews(allNews) {
     allNews["articles"].forEach(function(data){
-        var s = sentiment(data, callback);
-        /*if(s > 0){
-            happy.push(data);
-        }
-        else if(s < 0){
-            sad.push(data);
-        }*/
+        sentiment(data);
     });
 }
 
+// Display all the news that matches with the current sentiment
 function displayNews(){
     console.log("Displaying news");
+    // Empty whatever was displayed
+    $("#news").empty();
     if(isHappy){
-        //console.log(happy);
-        $("#news").html(happy.toString());
+        happy.forEach(function(a){
+           displayArticle(a);
+        });
     }
     else{
-        $("#news").html(sad.toString());
+        sad.forEach(function(a){
+            displayArticle(a);
+        });
     }
 }
 
+// Display a single article
 function displayArticle(article){
-    $("#news").append('<li>' + article + '</li>');
+    $("#news").append('<li>Title: ' + article["title"] + '<ul><li>Description: ' +
+        article["description"] + '</li><li>Content: ' +
+        article["content"] + '</li><li>Happiness: ' +
+        article["happiness"] + '</li></ul></li>');
 }
 
 $(document).ready(function() {
-    $("#loadNews").click(function () {
+    $("#fetchNews").click(function () {
+        isHappy = true;
         getTopNews();
-        console.log("called");
+    });
+    $("#toggle").click(function () {
+        isHappy = !isHappy;
+        displayNews();
     });
 });
