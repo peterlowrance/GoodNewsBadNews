@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>HappyNewsBadNews</title>
+  <title>HappyNewsSadNews</title>
   <meta charset="utf-8">
 </head>
 <body>
@@ -31,12 +31,16 @@
 					echo("Database failure. Did you import users.sql into xampp?");
 				}
 				else {
-					echo("connection successful");
 					
-					//
-					//rest of work goes here
-					//
-				
+					$stmt = $conn->prepare("INSERT INTO users (username, password) 
+					VALUES (?,?)");
+					$stmt->bind_param("ss",$user,$pass);
+					$stmt->execute();
+					
+					echo("account added sucessfully!");
+					
+					$stmt->close();
+					$conn->close();
 				}
 			}
 		}
