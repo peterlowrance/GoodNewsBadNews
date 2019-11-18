@@ -6,7 +6,7 @@ var isHappy = true;
 // Gets all the news and then partitions it
 function getTopNews() {
     console.log("Getting top news");
-    var url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=" + API_KEY;
+    var url = "https://newsapi.org/v2/top-headlines?country=us&pageSize=100&apiKey=" + API_KEY;
     var jqxhr = $.get(url);
     // Set the callback for if/when the AJAX request successfully returns
     jqxhr.done(function(data){
