@@ -1,0 +1,49 @@
+.article
+{
+  list-style-type: none;
+}
+.happyNews
+{
+  background-color: #ffff99;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  color: #885533;
+  width: 85%;
+}
+.sadNews
+{
+  background-color: #ccccfc;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  color: #222255;
+  width: 85%;
+}
+.happyButton
+{
+  background-color: #ffff99;
+  border-radius: 5px;
+  border-width: 0px;
+  height: 40px;
+}
+.sadButton
+{
+  background-color: #9999ff;
+  border-radius: 5px;
+  border-width: 0px;
+  height: 40px;
+}
+.wrapper
+{
+  text-align: center;
+}
+.title
+{
+  font-size: 18px;
+}
+body
+{
+  background-color: #dddddd;
+  font-family: sans-serif;
+}

@@ -49,10 +49,15 @@ function displayNews(){
 
 // Display a single article
 function displayArticle(article){
-    $("#news").append('<li>Title: ' + article["title"] + '<ul><li>Description: ' +
+    var happyString = "sad";
+    if(isHappy)
+    {
+      happyString = "happy"
+    }
+    $("#news").append('<li class = "article"> <div class = "' + happyString +'News"><div class = "title">' + article["title"] + '</div><ul><li>Description: ' +
         article["description"] + '</li><li>Content: ' +
         article["content"] + '</li><li>Happiness: ' +
-        article["happiness"] + '</li></ul></li>');
+        article["happiness"] + '</li></ul></div></li>');
 }
 
 $(document).ready(function() {
@@ -62,6 +67,12 @@ $(document).ready(function() {
     });
     $("#toggle").click(function () {
         isHappy = !isHappy;
+        var happyString = "sad";
+        if(isHappy)
+        {
+          happyString = "happy"
+        }
+        $("#toggle").attr('class', happyString + 'Button');
         displayNews();
     });
 });
