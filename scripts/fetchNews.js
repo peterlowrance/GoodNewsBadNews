@@ -62,12 +62,12 @@ function displayArticle(article){
     {
       happyString = "happy"
     }
-    $("#news").append('<li class = "article"> <div class = "' + happyString +'News"><img src="' +
+    $("#news").append('<li class = "article"> <div class = "' + happyString +'News"><div class = "emoji">' +
+    happyTypes[article["happiness"]] + '</div><img src="' +
 		article["urlToImage"] + '" alt="photo"/><div class = "title">' +
 		article["title"] + '</div><ul><li>Description: ' +
         article["description"] + '</li><li>Content: ' +
-        article["content"] + '</li>' +
-        happyTypes[article["happiness"]] + '</ul></div></li>');
+        article["content"] + '</li></ul></div></li>');
 }
 
 $(document).ready(function() {

@@ -7,6 +7,11 @@
   background-color: #cc8844;
   overflow:hidden;
 }
+.emoji
+{
+  float: right;
+  font-size: 30px;
+}
 .sadTop
 {
   background-color: #6644aa;
@@ -59,6 +64,7 @@
   color: #885533;
   width: 85%;
   box-shadow: 3px 3px 2px 2px #775544;
+  overflow:hidden;
 }
 .sadNews
 {
@@ -69,6 +75,7 @@
   color: #222266;
   width: 85%;
   box-shadow: 3px 3px 2px 2px #332255;
+  overflow:hidden;
 }
 .wrapper
 {
