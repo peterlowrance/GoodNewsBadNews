@@ -2,7 +2,15 @@ const API_KEY = "ad166f4252f544f38678b331fc373fff";
 var happy = new Array;
 var sad = new Array;
 var isHappy;
-
+var happyTypes = {};
+happyTypes[-4] = "😭";
+happyTypes[-3] = "😢";
+happyTypes[-2] = "☹️";
+happyTypes[-1] = "🙁";
+happyTypes[0] = "😐";
+happyTypes[1] = "🙂";
+happyTypes[2] = "😃";
+happyTypes[3] = "😁";
 // Gets all the news and then partitions it
 function getTopNews() {
     console.log("Getting top news");
@@ -58,8 +66,8 @@ function displayArticle(article){
 		article["urlToImage"] + '" alt="photo"/><div class = "title">' +
 		article["title"] + '</div><ul><li>Description: ' +
         article["description"] + '</li><li>Content: ' +
-        article["content"] + '</li><li>Happiness: ' +
-        article["happiness"] + '</li></ul></div></li>');
+        article["content"] + '</li>' +
+        happyTypes[article["happiness"]] + '</ul></div></li>');
 }
 
 $(document).ready(function() {
