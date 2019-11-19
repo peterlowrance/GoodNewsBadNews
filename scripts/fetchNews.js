@@ -63,11 +63,12 @@ function displayArticle(article){
       happyString = "happy"
     }
     $("#news").append('<li class = "article"> <div class = "' + happyString +'News"><div class = "emoji">' +
-    happyTypes[article["happiness"]] + '</div><img src="' +
+    happyTypes[article["happiness"]] + '<a class = "articleLink" href="' +
+		article["url"] + '" style="text-decoration:none;"></div><img src="' +
 		article["urlToImage"] + '" alt="photo"/><div class = "title">' +
 		article["title"] + '</div><ul><li>Description: ' +
         article["description"] + '</li><li>Content: ' +
-        article["content"] + '</li></ul></div></li>');
+        article["content"] + '</li></ul></div></a></li>');
 }
 
 $(document).ready(function() {
@@ -79,6 +80,7 @@ $(document).ready(function() {
         }
         else{
             isHappy = false;
+            $('#toggle').bootstrapToggle('off')
         }
     }
     else{ // if there is no cookie, set it to happy
@@ -93,7 +95,7 @@ $(document).ready(function() {
     $("#topBar").attr('class', happyString + 'Top');
     getTopNews();
 
-    $("#toggle").click(function () {
+    $("#toggle").change(function () {
         isHappy = !isHappy;
         $.cookie("happiness", isHappy? "happy" : "sad");
         console.log($.cookie("happiness"));

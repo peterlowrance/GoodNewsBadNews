@@ -12,6 +12,11 @@
   float: right;
   font-size: 30px;
 }
+.articleLink
+{
+  text-decoration: none;
+  color:inherit;
+}
 .sadTop
 {
   background-color: #6644aa;
