@@ -16,18 +16,27 @@
 <body id = "body">
   <nav id = "topBar" class="happyTop">
 	  <div>
-  		<div class="navbar-header">
-  		  <a class="navbar-brand" href="#">Good News Bad News</a>
+  		<div class="row">
+            <div class="col-md-5 p-5">
+                <a class="navbar-brand" href="#">Good News Bad News</a>
+            </div>
+            <div class="col-md-4 p-5">
+                <input id="toggle" type="checkbox" checked data-toggle="toggle" data-on="Happy" data-off="Sad" data-onstyle="primary" data-offstyle="secondary">
+            </div>
+            <div class="col-md-1 p-5">
+                <a type="button" class="btn btn-primary" href="login.html">Login</a>
+            </div>
+            <div class="col-md-2 p-5">
+                <a type="button" class="btn btn-primary" href="newAccount.html">Create An Account</a>
+            </div>
   		</div>
       <!--For testing NewUser.php-->
       <!-- MUST IMPORT THE USERS.SQL INTO XAMPP FOR THIS TO WORK-->
       <!--below is the toggle switch for "Toggle happy sad"-->
       <div>
 
-		 <a href="login.html">
-         Login
-     </a>
-		 <a href="newAccount.html">Create An Account</a>
+
+
 
 
       </div>
@@ -35,7 +44,7 @@
   </nav>
 
 	<div class="text-center">
-		<input id="toggle" type="checkbox" checked data-toggle="toggle" data-on="Happy" data-off="Sad">
+
 	</div>
   <div class = "content">
 	   <div id="news"></div>
