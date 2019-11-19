@@ -28,7 +28,7 @@
 			  
 				// Check connection
 				if ($conn->connect_errno) {
-					echo("Database failure. Did you import users.sql into xampp?");
+					echo("Database failure");
 				}
 				else {
 					
