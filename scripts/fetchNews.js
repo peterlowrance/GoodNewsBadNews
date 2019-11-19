@@ -80,6 +80,7 @@ $(document).ready(function() {
         }
         else{
             isHappy = false;
+            $('#toggle').bootstrapToggle('off')
         }
     }
     else{ // if there is no cookie, set it to happy
@@ -94,7 +95,7 @@ $(document).ready(function() {
     $("#topBar").attr('class', happyString + 'Top');
     getTopNews();
 
-    $("#toggle").click(function () {
+    $("#toggle").change(function () {
         isHappy = !isHappy;
         $.cookie("happiness", isHappy? "happy" : "sad");
         console.log($.cookie("happiness"));

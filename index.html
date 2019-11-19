@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Happy Sad News</title>
-	<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> css file using bootstrap from an example in class-->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> <!--css file using bootstrap from an example in class-->
     <link rel="stylesheet" href="style.css">
     <script src="http://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script src="scripts/sentiment.js"></script>
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+	<script src="scripts/sentiment.js"></script>
     <script src="scripts/fetchNews.js"></script>
 </head>
 <body id = "body">
@@ -29,13 +32,9 @@
 	  </div>
   </nav>
 
-  <div id="toggle">
-    <a class="switch">
-      <input type="checkbox">
-      <span class="slider round"></span>
-    </a>
-  </div>
-
+	<div class="text-center">
+		<input id="toggle" type="checkbox" checked data-toggle="toggle" data-on="Happy" data-off="Sad">
+	</div>
   <div class = "content">
 	   <ul id="news"></ul>
   </div>
