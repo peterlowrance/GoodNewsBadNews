@@ -54,8 +54,8 @@ function displayArticle(article){
     {
       happyString = "happy"
     }
-    $("#news").append('<li class = "article"> <div class = "' + happyString +'News"><img src="' + 
-		article["urlToImage"] + '" alt="photo"/><div class = "title">' + 
+    $("#news").append('<li class = "article"> <div class = "' + happyString +'News"><img src="' +
+		article["urlToImage"] + '" alt="photo"/><div class = "title">' +
 		article["title"] + '</div><ul><li>Description: ' +
         article["description"] + '</li><li>Content: ' +
         article["content"] + '</li><li>Happiness: ' +
@@ -87,7 +87,6 @@ $(document).ready(function() {
         {
           happyString = "happy"
         }
-        $("#toggle").attr('class', happyString + 'Slider');
         displayNews();
     });
 });

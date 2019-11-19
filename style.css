@@ -2,37 +2,68 @@
 {
   list-style-type: none;
 }
+.container-fluid
+{
+  background-color: #aaaaaa;
+  overflow:hidden;
+}
+.navbar-brand
+{
+  padding-top: 1.25rem;
+  padding-left: 0.5rem;
+  font-size: 42px;
+  text-decoration: none;
+  color: #222222;
+  float: left;
+}
+.navbar
+{
+  width: 100%;
+}
+#toggle
+{
+  padding-top: 2rem;
+  width: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.login
+{
+  float: right;
+  padding-right: 5%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.signUp
+{
+  float: right;
+  padding-right: 2.5%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.content
+{
+  float: right;
+}
 .happyNews
 {
   background-color: #ffff99;
   border-radius: 10px;
-  margin: 10px;
+  margin: 20px;
   padding: 10px;
   color: #885533;
   width: 85%;
+  box-shadow: 3px 3px 2px 2px #bbbbbb;
 }
 .sadNews
 {
-  background-color: #ccccfc;
+  background-color: #aaaaeb;
   border-radius: 10px;
-  margin: 10px;
+  margin: 20px;
   padding: 10px;
-  color: #222255;
+  color: #222266;
   width: 85%;
-}
-.happySlider
-{
-  background-color: #ffff99;
-  border-radius: 5px;
-  border-width: 0px;
-  height: 40px;
-}
-.sadSlider
-{
-  background-color: #9999ff;
-  border-radius: 5px;
-  border-width: 0px;
-  height: 40px;
+  box-shadow: 3px 3px 2px 2px #bbbbbb;
 }
 .wrapper
 {
@@ -46,10 +77,11 @@ body
 {
   background-color: #dddddd;
   font-family: sans-serif;
+  margin: 0px;
 }
 
 img {
-    padding: 3em;
+    padding: 1em;
     margin: 1em auto 1em auto;
     width: 10em;
 }
