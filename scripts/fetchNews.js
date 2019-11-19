@@ -54,7 +54,9 @@ function displayArticle(article){
     {
       happyString = "happy"
     }
-    $("#news").append('<li class = "article"> <div class = "' + happyString +'News"><div class = "title">' + article["title"] + '</div><ul><li>Description: ' +
+    $("#news").append('<li class = "article"> <div class = "' + happyString +'News"><img src="' + 
+		article["urlToImage"] + '" alt="photo"/><div class = "title">' + 
+		article["title"] + '</div><ul><li>Description: ' +
         article["description"] + '</li><li>Content: ' +
         article["content"] + '</li><li>Happiness: ' +
         article["happiness"] + '</li></ul></div></li>');

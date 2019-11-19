@@ -48,6 +48,12 @@ body
   font-family: sans-serif;
 }
 
+img {
+    padding: 3em;
+    margin: 1em auto 1em auto;
+    width: 10em;
+}
+
 /*Below is the css required for the happy sad toggle bar*/
 /* The switch - the box around the slider */
 .switch {
