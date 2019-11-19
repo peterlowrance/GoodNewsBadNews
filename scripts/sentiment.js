@@ -2,7 +2,13 @@ const API_KEY_WATSON = "wWWmw1H_8L1Rzjj4Ulr18ufiJ3eUZkIlwUXzNjp4jQX4";
 
 // uses Watson sentiment analysis to determine if the article is happy or sad
 function sentiment(article){
-    var sentimentString = ""
+    // If the happiness was set by cache, skip to partitioning
+    if(article["happiness"]){
+        partitionNews(article);
+        return 0;
+    }
+    console.log("Watson Request");
+    var sentimentString = "";
     sentimentString += article["title"] + ". ";
     sentimentString += article["description"];
     sentimentString += article["content"];
@@ -25,22 +31,8 @@ function sentiment(article){
 
     // Set the callback for if/when the AJAX request successfully returns
     jqxhr.done(function(data){
-        console.log("analyzing " + article["title"]);
-        console.log(data["document_tone"]["tones"]);
-        var s = happyOrSad(data["document_tone"]["tones"]);
-        article["happiness"] = s;
-        if(s > 0){
-            happy.push(article);
-            if(isHappy){
-                displayArticle(article);
-            }
-        }
-        else if(s < 0){
-            sad.push(article);
-            if(!isHappy){
-                displayArticle(article);
-            }
-        }
+        article["happiness"] = happyOrSad(data["document_tone"]["tones"]);
+        partitionNews(article);
         //use a countdown and a timer. Possibly array of jqxhr that has a callback
     });
 
@@ -50,12 +42,32 @@ function sentiment(article){
         console.log("Error: " + jqXHR.status);
     });
     // Set a callback to execute regardless of success or failure result
-    jqxhr.always(function(){
+    /*jqxhr.always(function(){
         console.log("Done sentiment with AJAX request");
-    });
+    });*/
 
     return 0;
 }
+
+// Use the sentiment of each article to partition it into happy and sad articles
+function partitionNews(article) {
+    // Set the cookie
+    $.cookie(article["title"].substring(0, 15), article["happiness"]);
+    var s = article["happiness"];
+    if(s > 0){
+        if(isHappy){
+            displayArticle(article);
+        }
+        happy.push(article);
+    }
+    else if(s < 0){
+        if(!isHappy){
+            displayArticle(article);
+        }
+        sad.push(article);
+    }
+}
+
 
 // returns a positive number for happy articles and a negative number for sad articles
 function happyOrSad(tones){

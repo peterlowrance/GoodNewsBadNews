@@ -1,7 +1,7 @@
 const API_KEY = "ad166f4252f544f38678b331fc373fff";
 var happy = new Array;
 var sad = new Array;
-var isHappy = true;
+var isHappy;
 
 // Gets all the news and then partitions it
 function getTopNews() {
@@ -10,7 +10,14 @@ function getTopNews() {
     var jqxhr = $.get(url);
     // Set the callback for if/when the AJAX request successfully returns
     jqxhr.done(function(data){
-        partitionNews(data);
+        data["articles"].forEach(function(article){
+            // If the article is saved in cache, load its happiness
+            var hap = $.cookie(article["title"].substring(0, 15));
+            if(hap){
+                article["happiness"] = hap;
+            }
+            sentiment(article);
+        });
     });
 
     // Set the callback for if/when the AJAX request fails
@@ -20,13 +27,6 @@ function getTopNews() {
     // Set a callback to execute regardless of success or failure result
     jqxhr.always(function(){
         console.log("Done with news AJAX request");
-    });
-}
-
-// Use the sentiment of each article to partition it into happy and sad articles
-function partitionNews(allNews) {
-    allNews["articles"].forEach(function(data){
-        sentiment(data);
     });
 }
 
@@ -61,12 +61,25 @@ function displayArticle(article){
 }
 
 $(document).ready(function() {
-    $("#fetchNews").click(function () {
+    // Set happiness to what it was last time
+    var cookieHap = $.cookie("happiness")
+    if(cookieHap){
+        if(cookieHap === "happy"){
+            isHappy = true;
+        }
+        else{
+            isHappy = false;
+        }
+    }
+    else{ // if there is no cookie, set it to happy
         isHappy = true;
-        getTopNews();
-    });
+    }
+    getTopNews();
+
     $("#toggle").click(function () {
         isHappy = !isHappy;
+        $.cookie("happiness", isHappy? "happy" : "sad");
+        console.log($.cookie("happiness"));
         var happyString = "sad";
         if(isHappy)
         {
