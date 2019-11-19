@@ -2,9 +2,14 @@
 {
   list-style-type: none;
 }
-.container-fluid
+.happyTop
 {
-  background-color: #aaaaaa;
+  background-color: #cc8844;
+  overflow:hidden;
+}
+.sadTop
+{
+  background-color: #6644aa;
   overflow:hidden;
 }
 .navbar-brand
