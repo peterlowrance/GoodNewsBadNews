@@ -82,6 +82,7 @@ $(document).ready(function() {
       happyString = "happy"
     }
     $("#body").attr('class', happyString + 'Body');
+    $("#topBar").attr('class', happyString + 'Top');
     getTopNews();
 
     $("#toggle").click(function () {
@@ -94,6 +95,7 @@ $(document).ready(function() {
           happyString = "happy"
         }
         $("#body").attr('class', happyString + 'Body');
+        $("#topBar").attr('class', happyString + 'Top');
         displayNews();
     });
 });
