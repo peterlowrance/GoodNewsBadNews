@@ -74,7 +74,7 @@ function happyOrSad(tones){
     var happy = 0;
     tones.forEach(function(tone){
        if(tone["tone_id"] === "sadness"){
-           happy -= 1;
+           happy -= 2;
        }
        else if(tone["tone_id"] === "anger"){
            happy -= 1;
@@ -83,7 +83,7 @@ function happyOrSad(tones){
            happy -= 1;
        }
        else if(tone["tone_id"] === "joy"){
-           happy += 1;
+           happy += 2;
        }
        else if(tone["tone_id"] === "confident"){
            happy += 1;
