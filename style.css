@@ -5,6 +5,13 @@
 {
   overflow:hidden;
 }
+.description
+{}
+.login
+{
+  margin-left: auto ;
+  margin-right: auto ;
+}
 .happyTop
 {
   background-color: #cc8844;
@@ -120,6 +127,7 @@ img {
     padding: 1em;
     margin: 1em auto 1em auto;
     width: 10em;
+    float: left;
 }
 
 /*Below is the css required for the happy sad toggle bar*/

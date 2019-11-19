@@ -65,8 +65,8 @@ function displayArticle(article){
     $("#news").append('<div class = "article"> <b/> <div class = "' + happyString +'News"><div class = "emoji">' +
     happyTypes[article["happiness"]] + '<a class = "articleLink" href="' +
 		article["url"] + '" style="text-decoration:none;"></div><img src="' +
-		article["urlToImage"] + '" alt="photo"/><div class = "title">' +
-		article["title"] + '</div></div></a></div>');
+		article["urlToImage"] + '" alt="photo"/><div class = "articleData"><div class = "title">' +
+		article["title"] + '</div><div class = "description">' + article["description"] + '</div></div></div></a></div>');
 }
 
 $(document).ready(function() {
