@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Happy Sad News</title>
+	<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> css file using bootstrap from an example in class-->
     <link rel="stylesheet" href="style.css">
     <script   src="http://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
@@ -10,9 +11,22 @@
     <script src="scripts/fetchNews.js"></script>
 </head>
 <body>
-    <button id="toggle">Toggle happy sad</button>
-    <ul id="news"></ul>
-	<br />
+    <nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+		<div class="navbar-header">
+		  <a class="navbar-brand" href="#">HappySad News</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-left">
+				<!--below is the toggle switch for "Toggle happy sad"-->
+				<li id="toggle"><a class="switch">
+				  <input type="checkbox">
+				  <span class="slider round"></span>
+				</a></li>
+			</ul>
+		</div>
+	  </div>
+	</nav>
 	
 	<!--For testing NewUser.php-->
 	<!-- MUST IMPORT THE USERS.SQL INTO XAMPP FOR THIS TO WORK-->
@@ -38,6 +52,8 @@
         <input type="submit" value="Login" />
 	</form>
 	
+	<br />
+	<ul id="news"></ul>	
 	
 </body>
 </html>

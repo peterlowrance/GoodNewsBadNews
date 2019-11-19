@@ -85,7 +85,7 @@ $(document).ready(function() {
         {
           happyString = "happy"
         }
-        $("#toggle").attr('class', happyString + 'Button');
+        $("#toggle").attr('class', happyString + 'Slider');
         displayNews();
     });
 });
