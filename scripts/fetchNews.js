@@ -76,6 +76,12 @@ $(document).ready(function() {
     else{ // if there is no cookie, set it to happy
         isHappy = true;
     }
+    var happyString = "sad";
+    if(isHappy)
+    {
+      happyString = "happy"
+    }
+    $("#body").attr('class', happyString + 'Body');
     getTopNews();
 
     $("#toggle").click(function () {
