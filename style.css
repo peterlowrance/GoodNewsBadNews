@@ -1,13 +1,15 @@
 .article
 {
-  list-style-type: none;
+}
+#news
+{
+  overflow:hidden;
 }
 .happyTop
 {
   background-color: #cc8844;
   overflow:hidden;
   vertical-align: middle;
-  height: 8rem;
 }
 .emoji
 {
@@ -26,6 +28,15 @@
   vertical-align: middle;
 }
 .navbar-brand
+{
+  padding-top: 1.25rem;
+  padding-left: 0.5rem;
+  font-size: 42px;
+  text-decoration: none;
+  color: #222222;
+  float: left;
+}
+.navbar-brand:hover
 {
   padding-top: 1.25rem;
   padding-left: 0.5rem;
@@ -61,7 +72,6 @@
 }
 .content
 {
-  float: right;
 }
 .happyNews
 {
