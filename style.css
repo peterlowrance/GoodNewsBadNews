@@ -6,6 +6,8 @@
 {
   background-color: #cc8844;
   overflow:hidden;
+  vertical-align: middle;
+  height: 8rem;
 }
 .emoji
 {
@@ -21,6 +23,7 @@
 {
   background-color: #6644aa;
   overflow:hidden;
+  vertical-align: middle;
 }
 .navbar-brand
 {

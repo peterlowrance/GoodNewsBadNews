@@ -93,6 +93,7 @@ $(document).ready(function() {
     }
     $("#body").attr('class', happyString + 'Body');
     $("#topBar").attr('class', happyString + 'Top');
+    $('#topButton').attr('class', happyString + 'Button');
     getTopNews();
 
     $("#toggle").change(function () {
