@@ -66,7 +66,7 @@ function displayArticle(article){
     happyTypes[article["happiness"]] + '<a class = "articleLink" href="' +
 		article["url"] + '" style="text-decoration:none;"></div><img src="' +
 		article["urlToImage"] + '" alt="photo"/><div class = "articleData"><div class = "title">' +
-		article["title"] + '</div><div class = "description">' + article["description"] + '</div></div></div></a></div>');
+		article["title"] + '</div><div id = "description" class = "' + happyString + 'Description">' + article["description"] + '</div></div></div></a></div>');
 }
 
 $(document).ready(function() {
@@ -91,7 +91,6 @@ $(document).ready(function() {
     }
     $("#body").attr('class', happyString + 'Body');
     $("#topBar").attr('class', happyString + 'Top');
-    $('#topButton').attr('class', happyString + 'Button');
     getTopNews();
 
     $("#toggle").change(function () {

@@ -5,8 +5,14 @@
 {
   overflow:hidden;
 }
-.description
-{}
+.happyDescription
+{
+  color: #cc8844;
+}
+.sadDescription
+{
+  color: #6644aa;
+}
 .login
 {
   margin-left: auto ;
@@ -18,6 +24,48 @@
   overflow:hidden;
   vertical-align: middle;
 }
+.sadTop
+{
+  background-color: #6644aa;
+  overflow:hidden;
+  vertical-align: middle;
+}
+.happyNews
+{
+  background-color: #ffff99;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 10px;
+  color: #885533;
+  width: 85%;
+  box-shadow: 3px 3px 2px 2px #775544;
+  overflow:hidden;
+  min-height: 10em;
+}
+.sadNews
+{
+  background-color: #aaaaeb;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 10px;
+  color: #222266;
+  width: 85%;
+  box-shadow: 3px 3px 2px 2px #332255;
+  overflow:hidden;
+  min-height: 5em;
+}
+.happyBody
+{
+  background-color: #ddbb66;
+  font-family: sans-serif;
+  margin: 0px;
+}
+.sadBody
+{
+  background-color: #8877dd;
+  font-family: sans-serif;
+  margin: 0px;
+}
 .emoji
 {
   float: right;
@@ -28,12 +76,7 @@
   text-decoration: none;
   color:inherit;
 }
-.sadTop
-{
-  background-color: #6644aa;
-  overflow:hidden;
-  vertical-align: middle;
-}
+
 .navbar-brand
 {
   padding-top: 1.25rem;
@@ -63,45 +106,15 @@
   margin-left: auto;
   margin-right: auto;
 }
-.login
-{
-  float: right;
-  padding-right: 5%;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-.signUp
-{
-  float: right;
-  padding-right: 2.5%;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
 .content
 {
 }
-.happyNews
+
+.articleLink:hover
 {
-  background-color: #ffff99;
-  border-radius: 10px;
-  margin: 20px;
-  padding: 10px;
-  color: #885533;
-  width: 85%;
-  box-shadow: 3px 3px 2px 2px #775544;
-  overflow:hidden;
+  color: inherit;
 }
-.sadNews
-{
-  background-color: #aaaaeb;
-  border-radius: 10px;
-  margin: 20px;
-  padding: 10px;
-  color: #222266;
-  width: 85%;
-  box-shadow: 3px 3px 2px 2px #332255;
-  overflow:hidden;
-}
+
 .wrapper
 {
   text-align: center;
@@ -110,22 +123,14 @@
 {
   font-size: 18px;
 }
-.happyBody
-{
-  background-color: #ddbb66;
-  font-family: sans-serif;
-  margin: 0px;
-}
-.sadBody
-{
-  background-color: #8877dd;
-  font-family: sans-serif;
-  margin: 0px;
-}
+
 
 img {
-    padding: 1em;
-    margin: 1em auto 1em auto;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+
     width: 10em;
     float: left;
 }
