@@ -21,14 +21,10 @@
 .happyTop
 {
   background-color: #cc8844;
-  overflow:hidden;
-  vertical-align: middle;
 }
 .sadTop
 {
   background-color: #6644aa;
-  overflow:hidden;
-  vertical-align: middle;
 }
 .happyNews
 {
@@ -95,10 +91,7 @@
   color: #222222;
   float: left;
 }
-.navbar
-{
-  width: 100%;
-}
+
 #toggle
 {
   padding-top: 2rem;
@@ -201,4 +194,20 @@ input:checked + .slider:before {
     background-color: #222266 !important;
     border-color: #332255; !important;
     color: white;
+}
+
+/* Bootstrap Toggle v2.2.2 corrections for Bootsrtap 4*/
+.toggle > .toggle-group {
+  background:white;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  color:#666;
+}
+
+.toggle.off {
+  border-color: rgba(0, 0, 0, .25);
+}
+
+.toggle-handle {
+  background-color: white;
+  border: thin rgba(0, 0, 0, .25) solid;
 }
