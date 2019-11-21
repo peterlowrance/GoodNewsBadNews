@@ -89,21 +89,25 @@ $(document).ready(function() {
     {
       happyString = "happy"
     }
-    $("#body").attr('class', happyString + 'Body');
-    $("#topBar").attr('class', happyString + 'Top');
+    setClasses(happyString);
     getTopNews();
 
     $("#toggle").change(function () {
         isHappy = !isHappy;
-        $.cookie("happiness", isHappy? "happy" : "sad");
-        console.log($.cookie("happiness"));
         var happyString = "sad";
         if(isHappy)
         {
           happyString = "happy"
         }
-        $("#body").attr('class', happyString + 'Body');
-        $("#topBar").attr('class', happyString + 'Top');
+        $.cookie("happiness", happyString);
+
+        setClasses(happyString);
         displayNews();
     });
 });
+
+function setClasses(happyString){
+    $("#body").attr('class', happyString + 'Body');
+    $("#topBar").attr('class', happyString + 'Top');
+    $("#topBar .button").attr('class', 'button btn btn-' + happyString);
+}

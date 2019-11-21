@@ -190,22 +190,14 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-/*end of happy sad toggle bar css*/
-
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+/*Buttons*/
+.btn-happy, .btn-happy:hover, .btn-happy:active, .btn-happy:visited {
     background-color: #cc8844 !important;
     border-color: #885533; !important;
+    color: white;
 }
 
-.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
+.btn-sad, .btn-sad:hover, .btn-sad:active, .btn-sad:visited {
     background-color: #222266 !important;
     border-color: #332255; !important;
     color: white;
