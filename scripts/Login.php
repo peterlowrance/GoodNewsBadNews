@@ -7,6 +7,8 @@
 <body>
 	<?php
 
+	session_start();
+
 	  // DB connection parameters
 	  $servername = "127.0.0.1";
 	  $username = "root";
@@ -52,13 +54,20 @@
 					$row;
 
 					while($row = $result->fetch_assoc()){
-						echo "Welcome " . $row["username"] . "!"; 
+						 
 						
 						//get the user's relevant info
 						$Uusername = $row["username"];
 						$UHappyOrSad = $row["HappyOrSad"];
 						$UFavTone = $row["FavoriteTone"];
+						
+						session_regenerate_id();
+						$_SESSION['loggedin'] = TRUE;
+						$_SESSION['name'] = $Uusername;
+						$_SESSION['id'] = $Uusername;
 						//echo " " . $Uusername . " " . $UHappyOrSad . " " . $UFavTone;
+						
+						echo "Welcome " . $_SESSION["name"] . "!";
 						exit;
 					}
 					

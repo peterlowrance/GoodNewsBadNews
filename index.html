@@ -26,6 +26,15 @@
     <script src="scripts/loadPage.js"></script>
 </head>
 <body id="body">
+	<?php
+	// We need to use sessions, so you should always start sessions using the below code.
+	session_start();
+	if (!isset($_SESSION['loggedin'])) {
+		//header('Location: index.html');
+		//exit();
+		echo'already logged in';
+	}
+	?>
     <nav id="topBar" class="navbar navbar-expand-md navbar-light happyTop">
         <a class="p-0 mr-lg-3 mr-1 navbar-brand" href="#">Good News Bad News</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

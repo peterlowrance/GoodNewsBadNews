@@ -22,6 +22,8 @@
 				//get vars from the form input
 				$user = $_GET["username"];
 				$pass = $_GET["password"];
+				$sQuest = $_GET["secQuest"];
+				$sAnsw = $_Get["secAnsw"];
 			  
 				// Create connection
 				$conn = new mysqli($servername, $username, $password, $dbname);
@@ -32,12 +34,13 @@
 				}
 				else {
 					
-					$stmt = $conn->prepare("INSERT INTO users (username, password) 
-					VALUES (?,?)");
-					$stmt->bind_param("ss",$user,$pass);
+					$stmt = $conn->prepare("INSERT INTO users (username, password, securityQuestion, securityAnswer) 
+					VALUES (?,?,?,?)");
+					$stmt->bind_param("ssss",$user,$pass,$sQuest,$sAnsw);
 					$stmt->execute();
 					
 					echo("account added sucessfully!");
+					
 					
 					$stmt->close();
 					$conn->close();
