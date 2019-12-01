@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <title>Happy Sad News</title>
 	<link rel="stylesheet" href="accountStyles.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </head>
-<body>
+<body class="text-center">
         <div class = "signUp">
-          Sign Up
           <form method="get" action="scripts/NewUser.php">
-            <input type="text" name="username" id="f-usernameNew" />
-              <label for="f-username">Username</label>
+            <h1 class="h1 mb-3 font-weight-normal">Sign Up</h1>
+			<input type="text" name="username" class="form-control" id="f-usernameNew" placeholder="Username"/>
                 <br />
-            <input type="password" name="password" id="f-passwordNew" />
-              <label for="f-password">Password</label>
+            <input type="password" name="password" class="form-control" id="f-passwordNew" placeholder="Password"/>
 			  <br />
-                <input type="submit" value="Create Account" />
+                <input type="submit" value="Create Account" class="btn btn-lg btn-primary btn-block"/>
           </form>
           <br />
         </div>
