@@ -1,3 +1,16 @@
+:root {
+  --happyhigh: #ffff99;
+  --happymid1: #ddbb66;
+  --happymid2: #cc8844;
+  --happyshadow: #885533;
+  --happyocclusion: #553300;
+  --sadhigh: #aaaaeb;
+  --sadmid1: #8877dd;
+  --sadmid2: #6644aa;
+  --sadshadow: #332266;
+  --sadocclusion: #222266;
+}
+
 .article
 {
 }
@@ -7,11 +20,11 @@
 }
 .happyDescription
 {
-  color: #cc8844;
+  color: var(--happyshadow);
 }
 .sadDescription
 {
-  color: #6644aa;
+  color: var(--sadshadow);
 }
 .login
 {
@@ -20,45 +33,45 @@
 }
 .happyTop
 {
-  background-color: #cc8844;
+  background-color: var(--happymid2);
 }
 .sadTop
 {
-  background-color: #6644aa;
+  background-color: var(--sadmid2);
 }
 .happyNews
 {
-  background-color: #ffff99;
+  background-color: var(--happyhigh);
   border-radius: 10px;
   margin: 20px;
   padding: 10px;
-  color: #885533;
+  color: var(--happyocclusion);
   width: 85%;
-  box-shadow: 3px 3px 2px 2px #775544;
+  box-shadow: 3px 3px 2px 2px var(--happyshadow);
   overflow:hidden;
   min-height: 10em;
 }
 .sadNews
 {
-  background-color: #aaaaeb;
+  background-color: var(--sadhigh);
   border-radius: 10px;
   margin: 20px;
   padding: 10px;
-  color: #222266;
+  color: var(--sadocclusion);
   width: 85%;
-  box-shadow: 3px 3px 2px 2px #332255;
+  box-shadow: 3px 3px 2px 2px var(--sadshadow);
   overflow:hidden;
   min-height: 10em;
 }
 .happyBody
 {
-  background-color: #ddbb66;
+  background-color: var(--happymid1);
   font-family: sans-serif;
   margin: 0px;
 }
 .sadBody
 {
-  background-color: #8877dd;
+  background-color: var(--sadmid1);
   font-family: sans-serif;
   margin: 0px;
 }
@@ -183,18 +196,54 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
+
 /*Buttons*/
-.btn-happy, .btn-happy:hover, .btn-happy:active, .btn-happy:visited {
-    background-color: #cc8844 !important;
-    border-color: #885533; !important;
+.btn-happy, .btn-happy:active, .btn-happy:visited {
+    background-color: var(--happyshadow); !important;
     color: white;
 }
 
-.btn-sad, .btn-sad:hover, .btn-sad:active, .btn-sad:visited {
-    background-color: #222266 !important;
-    border-color: #332255; !important;
+.btn-happy:hover
+{
+    background-color: var(--happyocclusion); !important;
+}
+
+.btn-sad, .btn-sad:active, .btn-sad:visited {
+    background-color: var(--sadshadow) !important;
     color: white;
 }
+
+ .btn-sad:hover
+ {
+   background-color: var(--sadocclusion);
+ }
+
+.btn-happyToggle:hover
+{
+  background-color: var(--happyhigh);
+}
+.btn-happyToggle
+{
+  background-color: var(--happymid1);
+}
+
+.btn-sadToggle:hover
+{
+  background-color: var(--sadhigh);
+}
+
+.btn-sadToggle
+{
+  background-color: var(--sadmid1);
+}
+
+.btn
+{
+  -webkit-appearance: none;
+  border-width: 0px;
+}
+
+
 
 /* Bootstrap Toggle v2.2.2 corrections for Bootsrtap 4*/
 .toggle > .toggle-group {
@@ -209,5 +258,6 @@ input:checked + .slider:before {
 
 .toggle-handle {
   background-color: white;
-  border: thin rgba(0, 0, 0, .25) solid;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, .25);
+  /*border: thin rgba(0, 0, 0, .25) solid;*/
 }
