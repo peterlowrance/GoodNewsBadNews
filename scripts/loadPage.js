@@ -78,7 +78,16 @@ function makeArticleHTML(article, isLarge){
     {
         happyString = "happy"
     }
-    return '<div class = "article' + (isLarge? ' col-lg-9 col-md-12 col-sm-15' : ' col-lg-3 col-md-4 col-sm-6') + '"> <b/>'+
+    return '<div class="card m-2" style="width: ' + (isLarge? 37: 18) + 'rem;">' +
+                '<a class="articleLink" href="' + article["url"] + '" style="text-decoration:none;">' +
+                    '<img src="' + article["urlToImage"] + '" class="card-img-top" alt="article photo">' +
+                    '<div class="card-body">' +
+                        '<h5 class="card-title">' + article["title"] + '</h5>' +
+                        '<p class="card-text">' + article["description"] + '</p>' +
+                    '</div>' +
+                '</a>' +
+            '</div>';
+    /*return '<div class = "article' + (isLarge? ' col-lg-9 col-md-12 col-sm-15' : ' col-lg-3 col-md-4 col-sm-6') + '"> <b/>'+
         '<div class = "' + happyString +'News">' +
           '<a class = "articleLink" href="' + article["url"] + '" style="text-decoration:none;">' +
             '<div class = "emoji">' + happyTypes[article["happiness"]] + '</div>' +
@@ -89,5 +98,5 @@ function makeArticleHTML(article, isLarge){
               '<div class = "title">' + article["title"] + '</div>' +
             '</div>' +
             '<div id = "description" class = "' + happyString + 'Description">' + article["description"] + '</div>' +
-          '</a></div></div>'
+          '</a></div></div>'*/
 }
