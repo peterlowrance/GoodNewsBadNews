@@ -95,9 +95,11 @@ function makeArticleHTML(article, isLarge){
     {
         happyString = "happy"
     }
-    return '<div class="card m-2" style="width: ' + (isLarge? 37: 18) + 'rem;">' +
+    return '<div class="m-2 card article'+ happyString +'" style="width: ' + (isLarge? 37: 18) + 'rem;">' +
                 '<a class="articleLink" href="' + article["url"] + '" style="text-decoration:none;">' +
+        '<div class="view overlay zoom">' +
                     '<img src="' + article["urlToImage"] + '" class="card-img-top" alt="article photo">' +
+        '</div>' +
                     '<div class="card-body">' +
                         '<h5 class="card-title">' + article["title"] + '</h5>' +
                         '<p class="card-text">' + article["description"] + '</p>' +

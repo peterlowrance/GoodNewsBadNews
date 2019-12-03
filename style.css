@@ -11,11 +11,6 @@
   --sadocclusion: #252255;
 }
 
-.article
-{
-
-}
-
 .headerData
 {
   overflow:hidden;
@@ -138,16 +133,6 @@
   font-size: 18px;
 }
 
-
-img {
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-
-    width: 12em;
-    float: left;
-}
 
 /*Below is the css required for the happy sad toggle bar*/
 /* The switch - the box around the slider */
@@ -306,3 +291,61 @@ input:checked + .slider:before {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.card {
+  max-height: 24rem;
+  overflow: hidden;
+}
+
+img {
+  max-height: 18rem;
+}
+
+
+.articlehappy:hover{
+  border-color: var(--happyshadow);
+}
+
+.articlesad:hover{
+  border-color: var(--sadshadow);
+
+}
+
+.articlehappy{
+  background-color: var(--happyhigh);
+  color: var(--happyocclusion);
+  /*box-shadow: 3px 3px 2px 2px var(--happyshadow);*/
+}
+
+.articlesad{
+  background-color: var(--sadhigh);
+  color: var(--sadocclusion);
+  /*box-shadow: 2px 2px 1px 1px var(--sadshadow);*/
+}
+/*
+
+.happyNews
+{
+  background-color: var(--happyhigh);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 10px;
+  color: var(--happyocclusion);
+  min-width: 90%;
+  min-height: 90%;
+  box-shadow: 3px 3px 2px 2px var(--happyshadow);
+  overflow:hidden;
+}
+.sadNews
+{
+  background-color: var(--sadhigh);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 10px;
+  color: var(--sadocclusion);
+  min-width: 90%;
+  min-height: 90%;
+  box-shadow: 3px 3px 2px 2px var(--sadshadow);
+  overflow:hidden;
+}
+*/
