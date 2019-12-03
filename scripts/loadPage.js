@@ -19,7 +19,7 @@ $(document).ready(function() {
     {
         happyString = "happy"
     }
-    setClasses(happyString);
+    setClasses(isHappy);
     getTopNews();
 
     $("#toggle").change(function () {
@@ -31,17 +31,34 @@ $(document).ready(function() {
         }
         $.cookie("happiness", happyString);
 
-        setClasses(happyString);
+        setClasses(isHappy);
         displayNews();
     });
 });
 
-function setClasses(happyString){
-    $("#body").attr('class', happyString + 'Body');
-    $("#topBar").attr('class', 'navbar navbar-expand-md navbar-light ' + happyString + 'Top');
-    $("#topBar .button").attr('class', 'm-lg-1 button btn btn-' + happyString);
-    // if not logged in:
-    $("#userButton").attr('class', 'disabled m-lg-1 button btn btn-' + happyString);
+function setClasses(isHappy){
+    if(isHappy){
+        $("#body").removeClass("sadBody");//('class', happyString + 'Body');
+        $("#body").addClass("happyBody");
+        $("#topBar").removeClass("sadTop");//('class', 'navbar navbar-expand-md navbar-light ' + happyString + 'Top');
+        $("#topBar").addClass("happyTop");
+        $("#topBar .button").removeClass("btn-sad");//.attr('class', 'm-lg-1 button btn btn-' + happyString);
+        $("#topBar .button").addClass("btn-happy");
+        // if not logged in:
+        $("#userButton").removeClass("btn-sad");//.attr('class', 'disabled m-lg-1 button btn btn-' + happyString);
+        $("#userButton").addClass("btn-happy");
+    }
+    else{
+        $("#body").removeClass("happyBody");//('class', happyString + 'Body');
+        $("#body").addClass("sadBody");
+        $("#topBar").removeClass("happyTop");//('class', 'navbar navbar-expand-md navbar-light ' + happyString + 'Top');
+        $("#topBar").addClass("sadTop");
+        $("#topBar .button").removeClass("btn-happy");//.attr('class', 'm-lg-1 button btn btn-' + happyString);
+        $("#topBar .button").addClass("btn-sad");
+        // if not logged in:
+        $("#userButton").removeClass("btn-happy");//.attr('class', 'disabled m-lg-1 button btn btn-' + happyString);
+        $("#userButton").addClass("btn-sad");
+    }
 }
 
 // Display all the news that matches with the current sentiment
