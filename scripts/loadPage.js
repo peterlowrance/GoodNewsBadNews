@@ -72,7 +72,9 @@ function makeArticleHTML(article, isLarge){
     return '<div class="m-2 card article'+ happyString +'" style="width: ' + (isLarge? 37: 18) + 'rem;">' +
                 '<a class="articleLink" href="' + article["url"] + '" style="text-decoration:none;">' +
         '<div class="view overlay zoom">' +
+                    '<div class = "emoji">' + happyTypes[article["happiness"]] + '</div>' + 
                     '<img src="' + article["urlToImage"] + '" class="card-img-top" alt="article photo">' +
+
         '</div>' +
                     '<div class="card-body">' +
                         '<h5 class="card-title">' + article["title"] + '</h5>' +

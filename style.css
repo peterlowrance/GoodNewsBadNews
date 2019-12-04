@@ -79,9 +79,8 @@
 }
 .emoji
 {
-  float: right;
+  position: absolute;
   font-size: 30px;
-  padding-bottom: 25%
 }
 .articleLink
 {
