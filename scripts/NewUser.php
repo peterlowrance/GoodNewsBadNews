@@ -7,6 +7,8 @@
 <body>
 	<?php
 
+	  session_start();
+	  
 	  // DB connection parameters
 	  $servername = "127.0.0.1";
 	  $username = "root";
@@ -41,6 +43,14 @@
 					
 					echo("account added sucessfully!");
 					
+					session_regenerate_id();
+					$_SESSION['loggedin'] = TRUE;
+					$_SESSION['name'] = $user;
+					$_SESSION['id'] = $user;
+					//echo " " . $Uusername . " " . $UHappyOrSad . " " . $UFavTone;
+					
+					header('Location: ../index.php');
+					exit();
 					
 					$stmt->close();
 					$conn->close();

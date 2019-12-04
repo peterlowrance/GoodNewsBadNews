@@ -46,11 +46,6 @@
 					
 					$result = $stmt-> get_result();
 					
-					//get rows from result
-					//$check = $result->fetch_assoc();
-					//if($check < 1){
-						//echo "Login failed";
-					//}
 					$row;
 
 					while($row = $result->fetch_assoc()){
@@ -67,12 +62,10 @@
 						$_SESSION['id'] = $Uusername;
 						//echo " " . $Uusername . " " . $UHappyOrSad . " " . $UFavTone;
 						
-						//echo "Welcome " . $_SESSION["name"] . "!";
 						header('Location: ../index.php');
 						exit();
 					}
 					
-					//$check = $result->fetch_assoc();
 					if ($row == 0){
 						echo ("login failed");
 					}

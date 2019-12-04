@@ -40,10 +40,15 @@
 		console.log("logged in");
 		</script>';
 	}
+	else{
+		echo '<script type = "text/javascript">
+		console.log("not logged in");
+		</script>';
+	}
 	?>
 
     <nav id="topBar" class="navbar navbar-expand-md navbar-light happyTop">
-        <a class="p-0 mr-lg-3 mr-1 navbar-brand" href="index.html">Good News Bad News</a>
+        <a class="p-0 mr-lg-3 mr-1 navbar-brand" href="index.php">Good News Bad News</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
