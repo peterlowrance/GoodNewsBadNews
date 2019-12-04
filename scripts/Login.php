@@ -67,8 +67,9 @@
 						$_SESSION['id'] = $Uusername;
 						//echo " " . $Uusername . " " . $UHappyOrSad . " " . $UFavTone;
 						
-						echo "Welcome " . $_SESSION["name"] . "!";
-						exit;
+						//echo "Welcome " . $_SESSION["name"] . "!";
+						header('Location: ../index.php');
+						exit();
 					}
 					
 					//$check = $result->fetch_assoc();
@@ -76,9 +77,6 @@
 						echo ("login failed");
 					}
 						
-					
-					
-
 					
 					$stmt->close();
 					$conn->close();

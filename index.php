@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,17 +26,22 @@
     <script src="scripts/sentiment.js"></script>
     <script src="scripts/fetchNews.js"></script>
     <script src="scripts/loadPage.js"></script>
+	
+
 </head>
 <body id="body">
+
+<!-- checks if the user is logged in -->
 	<?php
-	// We need to use sessions, so you should always start sessions using the below code.
 	session_start();
-	if (!isset($_SESSION['loggedin'])) {
-		//header('Location: index.html');
-		//exit();
-		echo'already logged in';
+	if (isset($_SESSION['loggedin'])) {
+		//If the user is logged in put in their home page preferences here
+		echo '<script type = "text/javascript">
+		console.log("logged in");
+		</script>';
 	}
 	?>
+
     <nav id="topBar" class="navbar navbar-expand-md navbar-light happyTop">
         <a class="p-0 mr-lg-3 mr-1 navbar-brand" href="index.html">Good News Bad News</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -54,6 +60,7 @@
     </nav>
 
 
+
     <div class="content container-fluid">
         <div id="news" class="row">
             <!--Large Article-->
@@ -61,5 +68,6 @@
         </div>
     </div>
 
+	
 </body>
 </html>
