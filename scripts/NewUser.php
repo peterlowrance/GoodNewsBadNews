@@ -84,8 +84,25 @@
 				}
 				else {
 					//check if username is unique
+					$stmt = $conn->prepare("SELECT * from users WHERE username = ?");
+					$stmt->bind_param("s",$user);
+					$stmt->execute();
+					
+					$result = $stmt-> get_result();
+					$resultArr = $result->fetch_assoc();
+					
+					if ($resultArr != NULL){
+						echo("username is taken");
+						exit();
+					}
+					
 					
 					//check if password is longer than 5 characters
+					$passLen = strlen($pass);
+					if ($passLen < 5){
+						echo("password must be longer than 5 characters.");
+						exit();
+					}
 					
 					
 					$stmt = $conn->prepare("INSERT INTO users (username, password) 

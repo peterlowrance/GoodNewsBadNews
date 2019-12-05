@@ -64,7 +64,7 @@
 	  
 		if( $_SERVER['REQUEST_METHOD'] === 'GET' ){
 			if( !isset($_GET["username"]) || !isset($_GET["password"]) ){
-				//echo "<script type='text/javascript'>alert('You need both a username and a password');</script>";
+				//echo
 			}
 			else{
 				//get vars from the form input
@@ -107,7 +107,7 @@
 					}
 					
 					if ($row == 0){
-						echo "<script type='text/javascript'>alert('Login failed. Please check your credentials are correct.');</script>";
+						echo ("Login failed. Please check your credentials are correct.");
 
 					}
 						
