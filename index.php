@@ -58,7 +58,7 @@
                 <input id="toggle" type="checkbox" checked data-toggle="toggle" data-on="Happy" data-off="Sad"
                        data-onstyle="happyToggle" data-offstyle="sadToggle">
             </div>
-            <a id="userButton" type="button" class="m-lg-1 button btn btn-happy" href="userPage.html">User Page</a> <!--disabled-->
+            <a id="userButton" type="button" class="m-lg-1 button btn btn-happy" href="userPage.php">User Page</a> <!--disabled-->
             <a type="button" class="m-lg-1 button btn btn-happy" href="scripts/Login.php">Login</a>
             <a type="button" class="m-lg-1 button btn btn-happy" href="scripts/NewUser.php">Create Account</a>
         </div>
