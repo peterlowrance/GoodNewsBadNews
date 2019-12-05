@@ -59,7 +59,7 @@
                        data-onstyle="happyToggle" data-offstyle="sadToggle">
             </div>
             <a id="userButton" type="button" class="m-lg-1 button btn btn-happy" href="userPage.html">User Page</a> <!--disabled-->
-            <a type="button" class="m-lg-1 button btn btn-happy" href="login.html">Login</a>
+            <a type="button" class="m-lg-1 button btn btn-happy" href="scripts/Login.php">Login</a>
             <a type="button" class="m-lg-1 button btn btn-happy" href="newAccount.html">Create Account</a>
         </div>
     </nav>

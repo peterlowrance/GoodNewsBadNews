@@ -35,6 +35,10 @@
 					echo("Database failure");
 				}
 				else {
+					//check if username is unique
+					
+					//check if password is longer than 5 characters
+					
 					
 					$stmt = $conn->prepare("INSERT INTO users (username, password, securityQuestion, securityAnswer) 
 					VALUES (?,?,?,?)");
