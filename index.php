@@ -26,7 +26,7 @@
     <script src="scripts/sentiment.js"></script>
     <script src="scripts/fetchNews.js"></script>
     <script src="scripts/loadPage.js"></script>
-	
+
 
 </head>
 <body id="body">
@@ -34,17 +34,37 @@
 <!-- checks if the user is logged in -->
 	<?php
 	session_start();
+    echo $_SESSION['faveTone'];
 	if (isset($_SESSION['loggedin'])) {
 		//If the user is logged in put in their home page preferences here
 		echo '<script type = "text/javascript">
-		console.log("logged in");
+		$(document).ready(function() {
+		    // Update buttons
+		    $("#loginButton").text("Logout");
+		    $("#loginButton").attr("href", "");
+		    $("#loginButton").click(function(){
+		        // Call a php script to log out
+		        var jqxhr = $.get("scripts/Logout.php");
+		    });
+		    $("#accountButton").addClass("disabled");
+		});
 		</script>';
 	}
 	else{
 		echo '<script type = "text/javascript">
-		console.log("not logged in");
+		$(document).ready(function() {
+		    $("#userButton").addClass("disabled");
+		});
 		</script>';
 	}
+	// If favorite tone is sad:
+	if(isset($_SESSION['faveTone']) and ! $_SESSION['faveTone']) {
+	    echo '<script type="text/javascript">
+        $(document).ready(function() {
+            $(\'#toggle\').bootstrapToggle(\'off\');
+        }
+        </script>';
+    }
 	?>
 
     <nav id="topBar" class="navbar navbar-expand-md navbar-light happyTop">
@@ -59,8 +79,8 @@
                        data-onstyle="happyToggle" data-offstyle="sadToggle">
             </div>
             <a id="userButton" type="button" class="m-lg-1 button btn btn-happy" href="userPage.php">User Page</a> <!--disabled-->
-            <a type="button" class="m-lg-1 button btn btn-happy" href="scripts/Login.php">Login</a>
-            <a type="button" class="m-lg-1 button btn btn-happy" href="scripts/NewUser.php">Create Account</a>
+            <a id="loginButton" type="button" class="m-lg-1 button btn btn-happy" href="scripts/Login.php">Login</a>
+            <a id="accountButton" type="button" class="m-lg-1 button btn btn-happy" href="scripts/NewUser.php">Create Account</a>
         </div>
     </nav>
 
@@ -73,6 +93,6 @@
         </div>
     </div>
 
-	
+
 </body>
 </html>

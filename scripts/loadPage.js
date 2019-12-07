@@ -18,14 +18,14 @@ function displayNews(){
 
 $(document).ready(function() {
     // Set happiness to what it was last time
-    var cookieHap = $.cookie("happiness")
+    var cookieHap = $.cookie("happiness");
     if(cookieHap){
         if(cookieHap === "happy"){
             isHappy = true;
         }
         else{
             isHappy = false;
-            $('#toggle').bootstrapToggle('off')
+            $('#toggle').bootstrapToggle('off');
         }
     }
     else{ // if there is no cookie, set it to happy
