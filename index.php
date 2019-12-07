@@ -34,7 +34,6 @@
 <!-- checks if the user is logged in -->
 	<?php
 	session_start();
-    echo $_SESSION['faveTone'];
 	if (isset($_SESSION['loggedin'])) {
 		//If the user is logged in put in their home page preferences here
 		echo '<script type = "text/javascript">
