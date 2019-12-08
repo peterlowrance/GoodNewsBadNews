@@ -46,6 +46,10 @@
             <br/>
             <input type="password" name="password" class="form-control" id="f-passwordNew" placeholder="Password"/>
             <br/>
+			<input type="question" name="question" class="form-control" id="f-questionNew" placeholder="Security Question"/>
+			<br />
+			<input type="answer" name="answer" class="form-control" id="f-answerNew" placeholder="Answer"/>
+			<br />
             <input type="submit" value="Create Account" class="btn btn-lg btn-primary btn-block"/>
         </form>
         <br/>
@@ -72,8 +76,8 @@
 				//get vars from the form input
 				$user = $_GET["username"];
 				$pass = $_GET["password"];
-				//$sQuest = $_GET["secQuest"];
-				//$sAnsw = $_Get["secAnsw"];
+				$sQuest = $_GET["question"];
+				$sAnsw = $_GET["answer"];
 			  
 				// Create connection
 				$conn = new mysqli($servername, $username, $password, $dbname);
@@ -105,9 +109,9 @@
 					}
 					
 					
-					$stmt = $conn->prepare("INSERT INTO users (username, password) 
-					VALUES (?,?)");
-					$stmt->bind_param("ss",$user,$pass);//,$sQuest,$sAnsw);
+					$stmt = $conn->prepare("INSERT INTO users (username, password, securityQuestion, securityAnswer) 
+					VALUES (?,?,?,?)");
+					$stmt->bind_param("ssss",$user,$pass,$sQuest,$sAnsw);
 					$stmt->execute();
 					
 					//echo("account added sucessfully!");
@@ -115,6 +119,8 @@
 					session_regenerate_id();
 					$_SESSION['loggedin'] = TRUE;
 					$_SESSION['name'] = $user;
+					$_SESSION['question'] = $sQuest;
+					$_SESSION['answer'] = $sAnsw;
 
 					//echo " " . $Uusername . " " . $UHappyOrSad . " " . $UFavTone;
 					

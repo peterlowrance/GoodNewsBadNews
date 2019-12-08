@@ -95,12 +95,16 @@
 						$Uusername = $row["username"];
 						$UHappyOrSad = $row["HappyOrSad"];
 						$UFavTone = $row["FavoriteTone"];
+						$UQuestion = $row["securityQuestion"];
+						$UAnswer = $row["securityAnswer"];
 						
 						session_regenerate_id();
 						$_SESSION['loggedin'] = TRUE;
 						$_SESSION['name'] = $Uusername;
 						$_SESSION['faveTone'] = $UFavTone;
 						$_SESSION['happyorsad'] = $UHappyOrSad;
+						$_SESSION['question'] = $UQuestion;
+						$_SESSION['answer'] = $UAnswer;
 						
 						header('Location: ../index.php');
 						exit();
