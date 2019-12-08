@@ -31,7 +31,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="mx-auto"></div>
-            <a id="userButton" type="button" class="button btn btn-happy disabled" href="">User Page</a>
+            <a id="userButton" type="button" class="m-lg-1 button btn btn-happy" href="userPage.php">User Page</a>
             <!--disabled-->
             <a type="button" class="button m-lg-1 btn btn-happy disabled" href="Login.php">Login</a>
             <a type="button" class="button m-lg-1 btn btn-happy disabled" href="NewUser.php">Create Account</a>
@@ -42,34 +42,75 @@
             <h1 class="h1 font-weight-normal">User Page</h1>
             <div class="card mx-5" style="width:25rem;">
                 <div class="card-header p-2">
-                    <h5>Profile</h5>
+                    <h5>Password Reset</h5>
                 </div>
                 <div class="card-body">
-                    <p>Username: </p>
-                    <a type="submit" value="Create Account" class="btn btn-primary" href="passwordReset.php">Reset Password</a>
-                </div>
-            </div>
-
-            <div class="card mx-5 my-2" style="width:25rem;">
-                <div class="card-header p-2">
-                    <h5>Settings</h5>
-                </div>
-                <div class="card-body">
-                    <form method="get" action="scripts/">
-                        <p>Exclude articles with keywords:</p>
-                        <textarea class="form-control" name="username" id="f-usernameNew"
-                                  placeholder="Keywords"></textarea>
-                        <br/>
-                        <p>Default sentiment:</p>
-                        <input id="toggle" type="checkbox" checked data-toggle="toggle" data-on="Happy" data-off="Sad"
-                               data-onstyle="happyToggle" data-offstyle="sadToggle">
-                        <br/>
-                        <br/>
-                        <input type="submit" value="Save" class="btn btn-primary btn-block"/>
-                    </form>
+					<form method="get">
+						<input type="password" name="oldPassword" class="form-control" id="f-usernameNew" placeholder="Old Password"/>
+						<br/>
+						<input type="password" name="newPassword" class="form-control" id="f-passwordNew" placeholder="New Password"/>
+						<br />
+						<input type="submit" value="Reset Password" class="btn btn-primary btn-block"/>
+					</form>
                 </div>
             </div>
         </div>
     </div>
+	
+	<?php
+	
+		session_start();
+		
+		// DB connection parameters
+	    $servername = "127.0.0.1";
+	    $username = "root";
+	    $password = "";
+	    $dbname = "happysadnews";
+	  
+		if( $_SERVER['REQUEST_METHOD'] === 'GET' ){
+			if( !isset($_GET["oldPassword"]) || !isset($_GET["newPassword"]) ){
+				//echo("no get");
+			}
+			else{
+				$oldPass = $_GET["oldPassword"];
+				$newPass = $_GET["newPassword"];
+				$user = $_SESSION["name"];
+				
+				// Create connection
+				$conn = new mysqli($servername, $username, $password, $dbname);
+				
+				if ($conn->connect_errno) {
+					echo("Database failure");
+				}
+				else {
+					
+					//check if previous password exists 
+					$stmt = $conn->prepare("SELECT * from users WHERE username = ? AND password=?");
+					$stmt->bind_param("ss",$user,$oldPass);
+					$stmt->execute();
+					
+					$result = $stmt-> get_result();
+					$resultArr = $result->fetch_assoc();
+					
+					if ($resultArr == NULL){
+						echo("old password is incorrect");
+						exit();
+					}
+					else{
+
+					$stmt = $conn->prepare("UPDATE users SET password = ? WHERE username = ?");
+					$stmt->bind_param("ss",$newPass,$user);
+					$stmt->execute();
+						
+					}
+					
+				}				
+			}
+		}
+		else{
+			echo("No GET request received.");
+		}
+	?>
+	
 </body>
 </html>
