@@ -59,6 +59,7 @@
 	  $Uusername = "";
 	  $UHappyOrSad = 0;
 	  $UFavTone = "";
+	  $blacklist = "";
 	  
 	  
 	  
@@ -97,6 +98,7 @@
 						$UFavTone = $row["FavoriteTone"];
 						$UQuestion = $row["securityQuestion"];
 						$UAnswer = $row["securityAnswer"];
+						$blacklist = $row["blacklist"];
 						
 						session_regenerate_id();
 						$_SESSION['loggedin'] = TRUE;
@@ -105,6 +107,7 @@
 						$_SESSION['happyorsad'] = $UHappyOrSad;
 						$_SESSION['question'] = $UQuestion;
 						$_SESSION['answer'] = $UAnswer;
+						$_SESSION['blacklist'] = $blacklist;
 						
 						header('Location: ../index.php');
 						exit();

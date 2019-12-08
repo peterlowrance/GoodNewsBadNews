@@ -114,16 +114,20 @@
 					$stmt->bind_param("ssss",$user,$pass,$sQuest,$sAnsw);
 					$stmt->execute();
 					
-					//echo("account added sucessfully!");
 					
 					session_regenerate_id();
 					$_SESSION['loggedin'] = TRUE;
 					$_SESSION['name'] = $user;
 					$_SESSION['question'] = $sQuest;
 					$_SESSION['answer'] = $sAnsw;
-
-					//echo " " . $Uusername . " " . $UHappyOrSad . " " . $UFavTone;
 					
+					//other variables not set yet
+					$_SESSION['faveTone'] = "";
+					$_SESSION['happyorsad'] = "";
+					$_SESSION['blacklist'] = "";
+
+
+
 					echo "<script type='text/javascript'>console.log('Account Created');</script>";
 					header('Location: ../index.php');
 					exit();

@@ -23,6 +23,9 @@
     <script src="scripts/sentimentColors.js"></script>
 </head>
 <body id="body">
+	<?php
+		session_start();
+		?>
     <nav id="topBar" class="navbar navbar-expand-md navbar-light happyTop">
         <a class="p-0 mr-lg-3 mr-1 navbar-brand" href="index.php">Good News Bad News</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -44,8 +47,9 @@
                 <div class="card-header p-2">
                     <h5>Profile</h5>
                 </div>
+
                 <div class="card-body">
-                    <p>Username: </p>
+                    <p id = "usernameDisplay">Username: <?php echo "<a>" . $_SESSION['name'] . "</a>"; ?></p>
                     <a type="submit" value="Create Account" class="btn btn-primary" href="passwordReset.php">Reset Password</a>
                 </div>
             </div>
@@ -71,5 +75,14 @@
             </div>
         </div>
     </div>
+	
+	<?php
+		
+		$name = $_SESSION['name'];
+		$blacklist = $_SESSION['blacklist'];
+		$happyorsad = $_SESSION['happyorsad'];
+		//echo"<script>document.getElementById('usernameDisplay').innerText = $name</script>";
+	?>
+		
 </body>
 </html>
