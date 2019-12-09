@@ -61,12 +61,25 @@
                 <div class="card-body">
                     <form method="get" action="scripts/">
                         <p>Exclude articles with keywords:</p>
-                        <textarea class="form-control" name="username" id="f-usernameNew"
-                                  placeholder="Keywords"></textarea>
+                        <textarea class="form-control" name="username" id="f-usernameNew">
+						</textarea>
+						<?php
+						$blacklist = $_SESSION['blacklist'];
+						if ($blacklist == NULL){
+							echo'<script>document.getElementById("f-usernameNew").value = "Keywords" </script>';
+						}
+						else{
+							echo'<script>document.getElementById("f-usernameNew").value = '. $blacklist.'</script>';
+						}
+						?>
                         <br/>
                         <p>Default sentiment:</p>
                         <input id="toggle" type="checkbox" checked data-toggle="toggle" data-on="Happy" data-off="Sad"
                                data-onstyle="happyToggle" data-offstyle="sadToggle">
+						<?php
+							$happyorsad = $_SESSION['happyorsad'];
+							
+						?>
                         <br/>
                         <br/>
                         <input type="submit" value="Save" class="btn btn-primary btn-block"/>
