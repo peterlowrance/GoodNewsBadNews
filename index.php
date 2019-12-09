@@ -41,10 +41,13 @@
 		$(document).ready(function() {
 		    // Update buttons
 		    $("#loginButton").text("Logout");
-		    $("#loginButton").attr("href", "");
+		    $("#loginButton").attr("href", "#");
 		    $("#loginButton").click(function(){
 		        // Call a php script to log out
 		        var jqxhr = $.get("scripts/Logout.php");
+		        jqxhr.always(function(){
+		            location.reload();
+		        });
 		    });
 		    $("#accountButton").addClass("disabled");
 		});
