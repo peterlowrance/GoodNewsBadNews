@@ -50,7 +50,7 @@
 
                 <div class="card-body">
                     <p id = "usernameDisplay">Username: <?php echo "<a>" . $_SESSION['name'] . "</a>"; ?></p>
-                    <a type="submit" value="Create Account" class="btn btn-primary" href="passwordReset.php">Reset Password</a>
+                    <a type="submit" value="Create Account" class="btn btn-primary" href="passwordReset.php">Change Password</a>
                 </div>
             </div>
 
@@ -58,18 +58,15 @@
                 <div class="card-header p-2">
                     <h5>Settings</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body px-3">
                     <form method="get" action="scripts/">
-                        <p>Exclude articles with keywords:</p>
-                        <textarea class="form-control" name="username" id="f-usernameNew">
-						</textarea>
+                        <p>Exclude articles with keywords (comma separated):</p>
+                        <textarea class="form-control" name="username" id="f-usernameNew" placeholder="Keywords"></textarea>
 						<?php
 						$blacklist = $_SESSION['blacklist'];
-						if ($blacklist == NULL){
-							echo'<script>document.getElementById("f-usernameNew").value = "Keywords" </script>';
-						}
-						else{
-							echo'<script>document.getElementById("f-usernameNew").value = '. $blacklist.'</script>';
+						echo'<script>console.log("Value:'.$blacklist.'")</script>';
+						if ($blacklist){
+                            echo'<script>$("#f-usernameNew").text('. $blacklist .')</script>';
 						}
 						?>
                         <br/>
