@@ -59,9 +59,9 @@
                     <h5>Settings</h5>
                 </div>
                 <div class="card-body px-3">
-                    <form method="get" action="scripts/">
+                    <form method="get">
                         <p>Exclude articles with keywords (comma separated):</p>
-                        <textarea class="form-control" name="username" id="f-usernameNew" placeholder="Keywords"></textarea>
+                        <textarea class="form-control" name="keywords" id="f-usernameNew" placeholder="Keywords"></textarea>
 						<?php
 						$blacklist = $_SESSION['blacklist'];
 						echo'<script>console.log("Value:'.$blacklist.'")</script>';
@@ -71,12 +71,9 @@
 						?>
                         <br/>
                         <p>Default sentiment:</p>
-                        <input id="toggle" type="checkbox" checked data-toggle="toggle" data-on="Happy" data-off="Sad"
+                        <input id="toggle" name="happyorsad" type="checkbox" checked data-toggle="toggle" data-on="Happy" data-off="Sad"
                                data-onstyle="happyToggle" data-offstyle="sadToggle">
-						<?php
-							$happyorsad = $_SESSION['happyorsad'];
-							
-						?>
+
                         <br/>
                         <br/>
                         <input type="submit" value="Save" class="btn btn-primary btn-block"/>
@@ -85,14 +82,66 @@
             </div>
         </div>
     </div>
-	
-	<?php
-		
-		$name = $_SESSION['name'];
-		$blacklist = $_SESSION['blacklist'];
-		$happyorsad = $_SESSION['happyorsad'];
-		//echo"<script>document.getElementById('usernameDisplay').innerText = $name</script>";
-	?>
-		
+
+    <?php
+
+    // DB connection parameters
+    $servername = "127.0.0.1";
+    $username = "root";
+    $password = "";
+    $dbname = "happysadnews";
+
+    //vars for the user
+    $Uusername = "";
+    $UHappyOrSad = 0;
+    $UFavTone = "";
+    $blacklist = "";
+
+
+
+    if( $_SERVER['REQUEST_METHOD'] === 'GET' ){
+        print_r($_GET);
+        print_r($_SESSION);
+        if($_GET["keywords"]) {
+            //get vars from the form input
+            $keywords = $_GET["keywords"];
+            $user = $_SESSION["name"];
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_errno) {
+                echo("Database failure");
+            } else {
+
+                $stmt = $conn->prepare("UPDATE users SET blacklist=? WHERE username=?");
+                $stmt->bind_param("ss", $keywords, $user);
+                $status = $stmt->execute();
+
+                if($status == 1){
+                    $fav = "sad";
+                    if(isset($_GET["happyorsad"])){
+                        $fav = "happy";
+                    }
+                    $stmt = $conn->prepare("UPDATE users SET FavoriteTone=? WHERE username=?");
+                    $stmt->bind_param("ss", $fav, $user);
+                    $status = $stmt->execute();
+                    echo "Successfully updated user settings";
+                }
+                else{
+                    echo "Unable to update user settings";
+                }
+                $stmt->close();
+                $conn->close();
+            }
+        }
+    }
+    else{
+        echo("No GET request received.");
+    }
+
+    ?>
+
 </body>
 </html>
