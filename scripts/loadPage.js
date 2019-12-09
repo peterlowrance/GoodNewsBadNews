@@ -18,7 +18,7 @@ function displayNews(){
 
 $(document).ready(function() {
     // Set happiness to what it was last time
-    var cookieHap = $.cookie("happiness");
+    let cookieHap = $.cookie("happiness");
     if(cookieHap){
         if(cookieHap === "happy"){
             isHappy = true;
@@ -31,17 +31,12 @@ $(document).ready(function() {
     else{ // if there is no cookie, set it to happy
         isHappy = true;
     }
-    var happyString = "sad";
-    if(isHappy)
-    {
-        happyString = "happy"
-    }
     setClasses(isHappy);
     getTopNews();
 
     $("#toggle").change(function () {
         isHappy = !isHappy;
-        var happyString = "sad";
+        let happyString = "sad";
         if(isHappy)
         {
             happyString = "happy"

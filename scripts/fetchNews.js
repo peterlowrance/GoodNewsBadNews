@@ -14,13 +14,13 @@ happyTypes[3] = "😁";
 // Gets all the news and then partitions it
 function getTopNews() {
     console.log("Getting top news");
-    var url = "https://newsapi.org/v2/top-headlines?country=us&pageSize=100&apiKey=" + API_KEY;
-    var jqxhr = $.get(url);
+    let url = "https://newsapi.org/v2/top-headlines?country=us&pageSize=100&apiKey=" + API_KEY;
+    let jqxhr = $.get(url);
     // Set the callback for if/when the AJAX request successfully returns
     jqxhr.done(function(data){
         data["articles"].forEach(function(article){
             // If the article is saved in cache, load its happiness
-            var hap = $.cookie(article["title"].substring(0, 15));
+            let hap = $.cookie(article["title"].substring(0, 15));
             if(hap){
                 article["happiness"] = hap;
             }
