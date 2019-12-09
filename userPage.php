@@ -23,8 +23,11 @@
     <script src="scripts/sentimentColors.js"></script>
 </head>
 <body id="body">
+	<?php
+		session_start();
+		?>
     <nav id="topBar" class="navbar navbar-expand-md navbar-light happyTop">
-        <a class="p-0 mr-lg-3 mr-1 navbar-brand" href="index.html">Good News Bad News</a>
+        <a class="p-0 mr-lg-3 mr-1 navbar-brand" href="index.php">Good News Bad News</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,8 +36,8 @@
             <div class="mx-auto"></div>
             <a id="userButton" type="button" class="button btn btn-happy disabled" href="">User Page</a>
             <!--disabled-->
-            <a type="button" class="button m-lg-1 btn btn-happy disabled" href="login.html">Login</a>
-            <a type="button" class="button m-lg-1 btn btn-happy disabled" href="newAccount.html">Create Account</a>
+            <a type="button" class="button m-lg-1 btn btn-happy disabled" href="Login.php">Login</a>
+            <a type="button" class="button m-lg-1 btn btn-happy disabled" href="NewUser.php">Create Account</a>
         </div>
     </nav>
     <div class="container d-flex">
@@ -44,10 +47,10 @@
                 <div class="card-header p-2">
                     <h5>Profile</h5>
                 </div>
+
                 <div class="card-body">
-                    <p>Email: </p>
-                    <p>Name: </p>
-                    <a class="btn btn-primary">Reset Password</a>
+                    <p id = "usernameDisplay">Username: <?php echo "<a>" . $_SESSION['name'] . "</a>"; ?></p>
+                    <a type="submit" value="Create Account" class="btn btn-primary" href="passwordReset.php">Reset Password</a>
                 </div>
             </div>
 
@@ -58,12 +61,25 @@
                 <div class="card-body">
                     <form method="get" action="scripts/">
                         <p>Exclude articles with keywords:</p>
-                        <textarea class="form-control" name="username" id="f-usernameNew"
-                                  placeholder="Keywords"></textarea>
+                        <textarea class="form-control" name="username" id="f-usernameNew">
+						</textarea>
+						<?php
+						$blacklist = $_SESSION['blacklist'];
+						if ($blacklist == NULL){
+							echo'<script>document.getElementById("f-usernameNew").value = "Keywords" </script>';
+						}
+						else{
+							echo'<script>document.getElementById("f-usernameNew").value = '. $blacklist.'</script>';
+						}
+						?>
                         <br/>
                         <p>Default sentiment:</p>
                         <input id="toggle" type="checkbox" checked data-toggle="toggle" data-on="Happy" data-off="Sad"
                                data-onstyle="happyToggle" data-offstyle="sadToggle">
+						<?php
+							$happyorsad = $_SESSION['happyorsad'];
+							
+						?>
                         <br/>
                         <br/>
                         <input type="submit" value="Save" class="btn btn-primary btn-block"/>
@@ -72,5 +88,14 @@
             </div>
         </div>
     </div>
+	
+	<?php
+		
+		$name = $_SESSION['name'];
+		$blacklist = $_SESSION['blacklist'];
+		$happyorsad = $_SESSION['happyorsad'];
+		//echo"<script>document.getElementById('usernameDisplay').innerText = $name</script>";
+	?>
+		
 </body>
 </html>

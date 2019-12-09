@@ -4,21 +4,30 @@ const API_KEY_WATSON = "uq66iCmak2IkCFwbsspio6-2yepKCHd0YsMxBTA1YwM3";
 
 // uses Watson sentiment analysis to determine if the article is happy or sad
 function sentiment(article) {
+    var blacklist = ["Trump", "Test"];
+
+    let sentimentString = "";
+    sentimentString += article["title"] + ". ";
+    sentimentString += article["description"];
+    sentimentString += article["content"];
+    sentimentString = sentimentString.replace(/(\r\n|\n|\r)/gm, " ");
+
+    for(let word of blacklist){
+        if (sentimentString.includes(word)) {
+             return -1;
+        }
+    }
+
     // If the happiness was set by cache, skip to partitioning
     if (article["happiness"]) {
         partitionNews(article);
         return 0;
     }
     console.log("Watson Request");
-    var sentimentString = "";
-    sentimentString += article["title"] + ". ";
-    sentimentString += article["description"];
-    sentimentString += article["content"];
-    sentimentString = sentimentString.replace(/(\r\n|\n|\r)/gm, " ");
 
-    var url = "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21&sentences=false";
+    let url = "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21&sentences=false";
 
-    var jqxhr = $.ajax({
+    let jqxhr = $.ajax({
         url: url + '&text=' + sentimentString,
         headers: {
             'Content-Type': 'application/json'
@@ -72,7 +81,7 @@ function partitionNews(article) {
 
 // returns a positive number for happy articles and a negative number for sad articles
 function happyOrSad(tones) {
-    var happy = 0;
+    let happy = 0;
     console.log(tones);
     tones.forEach(function (tone) {
         var score = tone["score"];
