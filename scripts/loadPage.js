@@ -2,7 +2,7 @@
 function displayNews(){
     console.log("Displaying news");
     // Empty whatever was displayed
-    $("#news").find('*').not('#largeArticle').remove();;
+    $("#news").find('*').not('#largeArticle').remove();
     $("#largeArticle").empty();
     if(isHappy){
         happy.forEach(function(a){
