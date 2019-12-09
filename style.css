@@ -321,6 +321,11 @@ img {
   color: var(--sadocclusion);
   /*box-shadow: 2px 2px 1px 1px var(--sadshadow);*/
 }
+
+.card-body
+{
+  overflow: scroll;
+}
 /*
 
 .happyNews
