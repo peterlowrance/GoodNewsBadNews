@@ -291,6 +291,31 @@ input:checked + .slider:before {
   border-top-right-radius: 0;
 }
 
+.signUp {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.signUp .form-control:focus {
+  z-index: 2;
+}
+
+.signUp input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.signUp .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
 .card {
   max-height: 24rem;
   overflow: hidden;
@@ -322,11 +347,34 @@ img {
   /*box-shadow: 2px 2px 1px 1px var(--sadshadow);*/
 }
 
-.card:hover
+.card-body
 {
   overflow: scroll;
-  overflow-x: hidden;
 }
-::-webkit-scrollbar {
-  width: 0px;
+/*
+
+.happyNews
+{
+  background-color: var(--happyhigh);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 10px;
+  color: var(--happyocclusion);
+  min-width: 90%;
+  min-height: 90%;
+  box-shadow: 3px 3px 2px 2px var(--happyshadow);
+  overflow:hidden;
 }
+.sadNews
+{
+  background-color: var(--sadhigh);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 10px;
+  color: var(--sadocclusion);
+  min-width: 90%;
+  min-height: 90%;
+  box-shadow: 3px 3px 2px 2px var(--sadshadow);
+  overflow:hidden;
+}
+*/
