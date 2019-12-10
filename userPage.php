@@ -32,6 +32,24 @@
     $password = "";
     $dbname = "happysadnews";
 
+    if (isset($_SESSION['loggedin'])) {
+        //If the user is logged in put in their home page preferences here
+        echo '<script type = "text/javascript">
+		$(document).ready(function() {
+		    // Update buttons
+		    console.log("loading");
+		    $("#loginButton").click(function(){
+		        // Call a php script to log out
+		        console.log("help");
+		        var jqxhr = $.get("scripts/Logout.php");
+		        jqxhr.always(function(){
+		            location.href="index.php";
+		        });
+		    });
+		});
+		</script>';
+    }
+
     if( $_SERVER['REQUEST_METHOD'] === 'GET' ){
         if(isset($_GET["keywords"])) {
             //get vars from the form input
@@ -89,9 +107,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="mx-auto"></div>
             <a id="userButton" type="button" class="button btn btn-happy disabled" href="">User Page</a>
-            <!--disabled-->
-            <a type="button" class="button m-lg-1 btn btn-happy disabled" href="Login.php">Login</a>
-            <a type="button" class="button m-lg-1 btn btn-happy disabled" href="NewUser.php">Create Account</a>
+            <a id="loginButton" type="button" class="button m-lg-1 btn btn-happy" href="#">Logout</a>
+            <a id="accountButton" type="button" class="button m-lg-1 btn btn-happy disabled" href="">Create Account</a>
         </div>
     </nav>
     <div class="container d-flex">
@@ -118,7 +135,6 @@
                         <textarea class="form-control" name="keywords" id="f-usernameNew" placeholder="Keywords"></textarea>
 						<?php
 						$blacklist = $_SESSION['blacklist'];
-						echo'<script>console.log("Value:'.$blacklist.'")</script>';
 						if ($blacklist){
                             echo'<script>$(document).ready(function(){$("#f-usernameNew").val("'. $blacklist .'")});</script>';
                         }

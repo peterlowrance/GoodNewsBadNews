@@ -40,6 +40,7 @@
 		echo '<script type = "text/javascript">
 		$(document).ready(function() {
 		    // Update buttons
+		    $("#userButton").removeClass("disabled");
 		    $("#loginButton").text("Logout");
 		    $("#loginButton").attr("href", "#");
 		    $("#loginButton").click(function(){
@@ -50,13 +51,6 @@
 		        });
 		    });
 		    $("#accountButton").addClass("disabled");
-		});
-		</script>';
-	}
-	else{
-		echo '<script type = "text/javascript">
-		$(document).ready(function() {
-		    $("#userButton").addClass("disabled");
 		});
 		</script>';
 	}
@@ -81,7 +75,7 @@
                 <input id="toggle" type="checkbox" checked data-toggle="toggle" data-on="Happy" data-off="Sad"
                        data-onstyle="happyToggle" data-offstyle="sadToggle">
             </div>
-            <a id="userButton" type="button" class="m-lg-1 button btn btn-happy" href="userPage.php">User Page</a> <!--disabled-->
+            <a id="userButton" type="button" class="m-lg-1 button btn btn-happy disabled" href="userPage.php">User Page</a> <!--disabled-->
             <a id="loginButton" type="button" class="m-lg-1 button btn btn-happy" href="scripts/Login.php">Login</a>
             <a id="accountButton" type="button" class="m-lg-1 button btn btn-happy" href="scripts/NewUser.php">Create Account</a>
         </div>
