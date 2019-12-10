@@ -12,3 +12,5 @@ The news articles displayed are pulled from News API (https://newsapi.org/).
 The IBM Watson Tone Analyzer API is used to determine the sentiment level for each article (https://tone-analyzer-demo.ng.bluemix.net/).
 
 ## Requirements yet to complete
+- Logged in user should be able to set the default happiness/sadness from the user page
+- Logged in user should be able to add and remove words to blacklist news articles from the user page
