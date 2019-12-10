@@ -54,14 +54,6 @@
 		});
 		</script>';
 	}
-	// If favorite tone is sad:
-	if(isset($_SESSION['faveTone']) and ! $_SESSION['faveTone']) {
-	    echo '<script type="text/javascript">
-        $(document).ready(function() {
-            $(\'#toggle\').bootstrapToggle(\'off\');
-        }
-        </script>';
-    }
 	?>
 
     <nav id="topBar" class="navbar navbar-expand-md navbar-light happyTop">

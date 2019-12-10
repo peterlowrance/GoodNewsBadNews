@@ -17,34 +17,44 @@ function displayNews(){
 }
 
 $(document).ready(function() {
-    // Set happiness to what it was last time
-    let cookieHap = $.cookie("happiness");
-    if(cookieHap){
-        if(cookieHap === "happy"){
-            isHappy = true;
-        }
-        else{
+    var getHappySad = $.get("scripts/GetHappySad.php");
+    getHappySad.done(function(data) {
+        if(data === "1"){
             isHappy = false;
             $('#toggle').bootstrapToggle('off');
         }
-    }
-    else{ // if there is no cookie, set it to happy
-        isHappy = true;
-    }
-    setClasses(isHappy);
-    getTopNews();
-
-    $("#toggle").change(function () {
-        isHappy = !isHappy;
-        let happyString = "sad";
-        if(isHappy)
-        {
-            happyString = "happy"
+        else if(data === "0"){
+            isHappy = true;
         }
-        $.cookie("happiness", happyString);
+        else{
+            // Set happiness to what it was last time
+            let cookieHap = $.cookie("happiness");
+            if (cookieHap) {
+                if (cookieHap === "happy") {
+                    isHappy = true;
+                } else {
+                    isHappy = false;
+                    $('#toggle').bootstrapToggle('off');
+                }
+            } else { // if there is no cookie, set it to happy
+                isHappy = true;
+            }
+        }
 
         setClasses(isHappy);
-        displayNews();
+        getTopNews();
+
+        $("#toggle").change(function () {
+            isHappy = !isHappy;
+            let happyString = "sad";
+            if (isHappy) {
+                happyString = "happy"
+            }
+            $.cookie("happiness", happyString);
+
+            setClasses(isHappy);
+            displayNews();
+        });
     });
 });
 

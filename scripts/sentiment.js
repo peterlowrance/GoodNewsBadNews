@@ -4,60 +4,67 @@ const API_KEY_WATSON = "uq66iCmak2IkCFwbsspio6-2yepKCHd0YsMxBTA1YwM3";
 
 // uses Watson sentiment analysis to determine if the article is happy or sad
 function sentiment(article) {
-    var blacklist = ["Trump", "Test"];
 
-    let sentimentString = "";
-    sentimentString += article["title"] + ". ";
-    sentimentString += article["description"];
-    sentimentString += article["content"];
-    sentimentString = sentimentString.replace(/(\r\n|\n|\r)/gm, " ");
+    var getBlacklist = $.get("scripts/GetBlacklist.php");
+    getBlacklist.done(function(data){
+        var blacklist = data.split(', ');
 
-    for(let word of blacklist){
-        if (sentimentString.includes(word)) {
-             return -1;
+        let sentimentString = "";
+        sentimentString += article["title"] + ". ";
+        sentimentString += article["description"];
+        sentimentString += article["content"];
+        sentimentString = sentimentString.replace(/(\r\n|\n|\r)/gm, " ");
+
+        if(blacklist[0] != "") {
+            for (let word of blacklist) {
+                if (sentimentString.includes(word)) {
+                    return -1;
+                }
+            }
         }
-    }
 
-    // If the happiness was set by cache, skip to partitioning
-    if (article["happiness"]) {
-        partitionNews(article);
+        // If the happiness was set by cache, skip to partitioning
+        if (article["happiness"]) {
+            partitionNews(article);
+            return 0;
+        }
+        console.log("Watson Request");
+
+        let url = "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21&sentences=false";
+
+        let jqxhr = $.ajax({
+            url: url + '&text=' + sentimentString,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'GET',
+            dataType: 'json',
+            disableSslVerification: true,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", "Basic " + btoa('apikey' + ":" + API_KEY_WATSON));
+            },
+        });
+
+        // Set the callback for if/when the AJAX request successfully returns
+        jqxhr.done(function (data) {
+            article["happiness"] = happyOrSad(data["document_tone"]["tones"]);
+            partitionNews(article);
+            //use a countdown and a timer. Possibly array of jqxhr that has a callback
+        });
+
+        // Set the callback for if/when the AJAX request fails
+        jqxhr.fail(function (jqXHR) {
+            // jqXHR is the failed call (so we can access status, e.g.)
+            console.log("Error: " + jqXHR.status);
+        });
+        // Set a callback to execute regardless of success or failure result
+        /*jqxhr.always(function(){
+            console.log("Done sentiment with AJAX request");
+        });*/
+
         return 0;
-    }
-    console.log("Watson Request");
-
-    let url = "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21&sentences=false";
-
-    let jqxhr = $.ajax({
-        url: url + '&text=' + sentimentString,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        method: 'GET',
-        dataType: 'json',
-        disableSslVerification: true,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", "Basic " + btoa('apikey' + ":" + API_KEY_WATSON));
-        },
     });
-
-    // Set the callback for if/when the AJAX request successfully returns
-    jqxhr.done(function (data) {
-        article["happiness"] = happyOrSad(data["document_tone"]["tones"]);
-        partitionNews(article);
-        //use a countdown and a timer. Possibly array of jqxhr that has a callback
-    });
-
-    // Set the callback for if/when the AJAX request fails
-    jqxhr.fail(function (jqXHR) {
-        // jqXHR is the failed call (so we can access status, e.g.)
-        console.log("Error: " + jqXHR.status);
-    });
-    // Set a callback to execute regardless of success or failure result
-    /*jqxhr.always(function(){
-        console.log("Done sentiment with AJAX request");
-    });*/
-
-    return 0;
+    return -1;
 }
 
 // Use the sentiment of each article to partition it into happy and sad articles
