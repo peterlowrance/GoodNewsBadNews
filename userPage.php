@@ -24,8 +24,62 @@
 </head>
 <body id="body">
 	<?php
-		session_start();
-		?>
+    session_start();
+
+    // DB connection parameters
+    $servername = "127.0.0.1";
+    $username = "root";
+    $password = "";
+    $dbname = "happysadnews";
+
+    if( $_SERVER['REQUEST_METHOD'] === 'GET' ){
+        if(isset($_GET["keywords"])) {
+            //get vars from the form input
+            $keywords = $_GET["keywords"];
+            $user = $_SESSION["name"];
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_errno) {
+                echo("Database failure");
+            } else {
+
+                $stmt = $conn->prepare("UPDATE users SET blacklist=? WHERE username=?");
+                $stmt->bind_param("ss", $keywords, $user);
+                $status = $stmt->execute();
+
+                if($status == 1){
+                    $_SESSION["blacklist"] = $keywords;
+                    $hs = 1;
+                    if(isset($_GET["happyorsad"])){
+                        $hs = 0;
+                    }
+                    $stmt = $conn->prepare("UPDATE users SET HappyOrSad=? WHERE username=?");
+                    $stmt->bind_param("is", $hs, $user);
+                    $status2 = $stmt->execute();
+                    if($status2 == 1){
+                        $_SESSION["happyorsad"] = $hs;
+                        echo '<script>$(document).ready(function(){$("#settingsCard").append("<p>Saved</p>")})</script>';
+                    }
+                    else{
+                        echo "Unable to update user settings";
+                    }
+                }
+                else{
+                    echo "Unable to update user settings";
+                }
+                $stmt->close();
+                $conn->close();
+            }
+        }
+    }
+    else{
+        echo("No GET request received.");
+    }
+
+    ?>
     <nav id="topBar" class="navbar navbar-expand-md navbar-light happyTop">
         <a class="p-0 mr-lg-3 mr-1 navbar-brand" href="index.php">Good News Bad News</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -58,7 +112,7 @@
                 <div class="card-header p-2">
                     <h5>Settings</h5>
                 </div>
-                <div class="card-body px-3">
+                <div class="card-body px-3" id="settingsCard">
                     <form method="get">
                         <p>Exclude articles with keywords (comma separated):</p>
                         <textarea class="form-control" name="keywords" id="f-usernameNew" placeholder="Keywords"></textarea>
@@ -66,8 +120,8 @@
 						$blacklist = $_SESSION['blacklist'];
 						echo'<script>console.log("Value:'.$blacklist.'")</script>';
 						if ($blacklist){
-                            echo'<script>$("#f-usernameNew").text('. $blacklist .')</script>';
-						}
+                            echo'<script>$(document).ready(function(){$("#f-usernameNew").val("'. $blacklist .'")});</script>';
+                        }
 						?>
                         <br/>
                         <p>Default sentiment:</p>
@@ -83,65 +137,7 @@
         </div>
     </div>
 
-    <?php
 
-    // DB connection parameters
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $dbname = "happysadnews";
-
-    //vars for the user
-    $Uusername = "";
-    $UHappyOrSad = 0;
-    $UFavTone = "";
-    $blacklist = "";
-
-
-
-    if( $_SERVER['REQUEST_METHOD'] === 'GET' ){
-        print_r($_GET);
-        print_r($_SESSION);
-        if($_GET["keywords"]) {
-            //get vars from the form input
-            $keywords = $_GET["keywords"];
-            $user = $_SESSION["name"];
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            // Check connection
-            if ($conn->connect_errno) {
-                echo("Database failure");
-            } else {
-
-                $stmt = $conn->prepare("UPDATE users SET blacklist=? WHERE username=?");
-                $stmt->bind_param("ss", $keywords, $user);
-                $status = $stmt->execute();
-
-                if($status == 1){
-                    $fav = "sad";
-                    if(isset($_GET["happyorsad"])){
-                        $fav = "happy";
-                    }
-                    $stmt = $conn->prepare("UPDATE users SET FavoriteTone=? WHERE username=?");
-                    $stmt->bind_param("ss", $fav, $user);
-                    $status = $stmt->execute();
-                    echo "Successfully updated user settings";
-                }
-                else{
-                    echo "Unable to update user settings";
-                }
-                $stmt->close();
-                $conn->close();
-            }
-        }
-    }
-    else{
-        echo("No GET request received.");
-    }
-
-    ?>
 
 </body>
 </html>
