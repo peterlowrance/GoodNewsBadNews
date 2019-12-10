@@ -1,6 +1,6 @@
 const API_KEY_WATSON = "wV_wDg1rIRTccmKYOQ6_NvAIeTgyfi2GxTj4KG8H2OTQ";
 // new key:  IaZZG7SI1dNuGclMhd2goxmvOrAoKBBAjpWtMivHWILR
-
+// old key: uq66iCmak2IkCFwbsspio6-2yepKCHd0YsMxBTA1YwM3
 
 // uses Watson sentiment analysis to determine if the article is happy or sad
 function sentiment(article) {
