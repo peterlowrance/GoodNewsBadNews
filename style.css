@@ -347,34 +347,11 @@ img {
   /*box-shadow: 2px 2px 1px 1px var(--sadshadow);*/
 }
 
-.card-body
+.card:hover
 {
   overflow: scroll;
+  overflow-x: hidden;
 }
-/*
-
-.happyNews
-{
-  background-color: var(--happyhigh);
-  border-radius: 10px;
-  margin: 20px;
-  padding: 10px;
-  color: var(--happyocclusion);
-  min-width: 90%;
-  min-height: 90%;
-  box-shadow: 3px 3px 2px 2px var(--happyshadow);
-  overflow:hidden;
+::-webkit-scrollbar {
+  width: 0px;
 }
-.sadNews
-{
-  background-color: var(--sadhigh);
-  border-radius: 10px;
-  margin: 20px;
-  padding: 10px;
-  color: var(--sadocclusion);
-  min-width: 90%;
-  min-height: 90%;
-  box-shadow: 3px 3px 2px 2px var(--sadshadow);
-  overflow:hidden;
-}
-*/
