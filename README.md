@@ -4,7 +4,7 @@ GoodNewsBadNews allows users to view news articles based on their whether their 
 ## Installation
 The GoodNewsBadNews must be run under XAMPP in order for the user to have full functionality within the website.
 
-In addition, the user must import the provided users.sql file into phpMyAdmin and recreate the database to take advantage of the login, create account, and user page features.
+In addition, the user must import the provided users.sql file into phpMyAdmin with a database named "happysadnews" to take advantage of the login, create account, and user page features.
  
 ## API Reference
 The news articles displayed are pulled from News API (https://newsapi.org/).
