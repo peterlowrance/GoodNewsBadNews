@@ -33,7 +33,7 @@
 				<div class="mx-auto"></div>
 				<a id="userButton" type="button" class="m-lg-1 button btn btn-happy" href="userPage.php">User Page</a>
 				<!--disabled-->
-				<a type="button" class="button m-lg-1 btn btn-happy disabled" href="scripts/Login.php">Login</a>
+				<a id="loginButton" type="button" class="m-lg-1 button btn btn-happy" href="scripts/Login.php">Login</a>
 				<a type="button" class="button m-lg-1 btn btn-happy disabled" href="scripts/NewUser.php">Create Account</a>
 			</div>
 		</nav>
@@ -46,20 +46,51 @@
                 </div>
                 <div class="card-body">
 					<form method="get">
-						<p>Please Enter the Security Question</p>
+						<p>Please enter the answer to the security question below</p>
+						<?php
+							$servername = "127.0.0.1";
+							$username = "root";
+							$password = "";
+							$dbname = "happysadnews";
+							
+							session_start();
+							
+							$conn = new mysqli($servername, $username, $password, $dbname);
+			  
+							// Check connection
+							if ($conn->connect_errno) {
+								echo("Database failure");
+							}
+							else{
+								$stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
+								$stmt->bind_param("s",$_SESSION["name"]);
+								$stmt->execute();
+								$result = $stmt -> get_result();
+								$secQuest;
+								while($row = $result->fetch_assoc()){
+									$secQuest = $row["securityQuestion"];
+								}
+								echo"<br/><p>". $secQuest ."</p>";
+							}
+						?>
 						<input type="text" name="secAnswer" class="form-control" id="f-secAnswer" placeholder="Answer"/>
 						<br/>
 						<p>Please enter a new password</p>
 						<input type="password" name="newPassword" class="form-control" id="f-newPassword" placeholder="New Password"/>
 						<br/>
-						<input type="submit" value="Recover Password" class="btn btn-primary btn-block"/>
+						<input type="submit" value="Change Password" class="btn btn-primary btn-block"/>
 					</form>
                 </div>
             </div>
         </div>
     </div>
 	<?php
-		session_start();
+	
+		$servername = "127.0.0.1";
+		$username = "root";
+		$password = "";
+		$dbname = "happysadnews";
+		
 		if( !isset($_GET["secAnswer"]) || !isset($_GET["newPassword"]) ){
 			//dont do anything
 		}
@@ -75,7 +106,25 @@
 				echo("Database failure");
 			}
 			else{
+				$stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
+				$stmt->bind_param("s",$_SESSION["name"]);
+				$stmt->execute();
+				$result = $stmt -> get_result();
 				
+				while($row = $result->fetch_assoc()){
+					//echo $row["username"] . $row["securityQuestion"] . $row["securityAnswer"];
+					if ($secAnswer == $row["securityAnswer"]){
+						if (strlen($newPass) >= 5){
+							$stmt = $conn->prepare("UPDATE users SET password = ? WHERE username = ?");
+							$stmt->bind_param("ss",$newPass,$_SESSION["name"]);
+							$stmt->execute();
+							echo "password changed successfully";
+						}
+						else{
+							echo "password must be longer than five letters";
+						}
+					}
+				}
 			}
 		}
 	?>

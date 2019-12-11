@@ -49,7 +49,7 @@
 						<p>Enter your username</p>
 						<input type="username" name="username" class="form-control" id="f-usernameNew" placeholder="Username"/>
 						<br/>
-						<input type="submit" value="Recover Password" class="btn btn-primary btn-block"/>
+						<input type="submit" value="Change Password" class="btn btn-primary btn-block"/>
 					</form>
                 </div>
             </div>

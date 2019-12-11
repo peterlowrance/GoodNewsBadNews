@@ -97,12 +97,16 @@
 						exit();
 					}
 					else{
-
-					$stmt = $conn->prepare("UPDATE users SET password = ? WHERE username = ?");
-					$stmt->bind_param("ss",$newPass,$user);
-					$stmt->execute();
-					
-					echo("password successfully changed");
+						if (strlen($newPass) >= 5){
+							$stmt = $conn->prepare("UPDATE users SET password = ? WHERE username = ?");
+							$stmt->bind_param("ss",$newPass,$user);
+							$stmt->execute();
+							
+							echo("password successfully changed");
+						}
+						else{
+							echo("password must be longer than five letters");
+						}
 					}
 					
 				}				
