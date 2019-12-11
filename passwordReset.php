@@ -33,8 +33,8 @@
             <div class="mx-auto"></div>
             <a id="userButton" type="button" class="m-lg-1 button btn btn-happy" href="userPage.php">User Page</a>
             <!--disabled-->
-            <a type="button" class="button m-lg-1 btn btn-happy disabled" href="Login.php">Login</a>
-            <a type="button" class="button m-lg-1 btn btn-happy disabled" href="NewUser.php">Create Account</a>
+            <a type="button" class="button m-lg-1 btn btn-happy disabled" href="scripts/Login.php">Login</a>
+            <a type="button" class="button m-lg-1 btn btn-happy disabled" href="scripts/NewUser.php">Create Account</a>
         </div>
     </nav>
     <div class="container d-flex">

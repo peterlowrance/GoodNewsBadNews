@@ -41,6 +41,8 @@
             <br/>
             <input type="submit" value="Login" class="btn btn-lg btn-primary btn-block"/>
         </form>
+		<br/>
+		<a id = "toPasswordRecovery", href="../passwordRecovery.php">Forgot Password?</a>
         <br/>
     </div>
 	
